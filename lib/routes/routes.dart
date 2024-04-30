@@ -83,37 +83,37 @@ class Routes {
   //     '$coupon?formCart=${formCart.toString()}';
 
   // static String getSavedAddressRoute() => savedAddress;
-  // static String getAddAddressRoute(AddressModel? address, int index) {
-  //   String? _address;
-  //   if (address != null) {
-  //     _address = base64Encode(utf8.encode(jsonEncode(address.toJson())));
-  //   }
-  //   return '$addAddress?address=$_address&index=$index';
-  // }
+  static String getAddAddressRoute(AddressModel? address, int index) {
+    String? _address;
+    if (address != null) {
+      _address = base64Encode(utf8.encode(jsonEncode(address.toJson())));
+    }
+    return '$addAddress?address=$_address&index=$index';
+  }
 
   static String getProfileRoute() => profile;
-  // static String getEditProfileRoute() => updateProfile;
-  // static String getSettingsRoute() => '$settings';
+  static String getEditProfileRoute() => updateProfile;
+  static String getSettingsRoute() => settings;
 
-  // static String getOrderDetailsRoute(int? orderID, {bool guestMode = false}) {
-  //   return '$orderDetails?id=$orderID&guest=$guestMode';
-  // }
+  static String getOrderDetailsRoute(int? orderID, {bool guestMode = false}) {
+    return '$orderDetails?id=$orderID&guest=$guestMode';
+  }
 
-  // static String getOrderSuccessRoute(
-  //     int? orderID, bool success, bool orderNow) {
-  //   return '$orderSuccess?id=$orderID&success=${success ? 'true' : 'false'}&order_now=${orderNow ? 'true' : 'false'}';
-  // }
+  static String getOrderSuccessRoute(
+      int? orderID, bool success, bool orderNow) {
+    return '$orderSuccess?id=$orderID&success=${success ? 'true' : 'false'}&order_now=${orderNow ? 'true' : 'false'}';
+  }
 
-  // static String getOrderTrackingRoute(OrderModel order) {
-  //   String _data = base64Encode(utf8.encode(jsonEncode(order.toJson())));
-  //   return '$orderTracking?order=$_data';
-  // }
+  static String getOrderTrackingRoute(OrderModel order) {
+    String _data = base64Encode(utf8.encode(jsonEncode(order.toJson())));
+    return '$orderTracking?order=$_data';
+  }
 
   // static String getSearchRoute() => search;
 
-  // static String getInstaMojoWebPaymentScreen(String url) {
-  //   return '$instaMojoWebPaymentScreen?url=$url';
-  // }
+  static String getInstaMojoWebPaymentScreen(String url) {
+    return '$instaMojoWebPaymentScreen?url=$url';
+  }
 
   static String getForgotPassRoute() {
     return '$forgotPassword?page=';
@@ -124,7 +124,7 @@ class Routes {
     return '$verification?page=$page&number=$number&token=$token&pass=$pass';
   }
 
-  // static String getResetPasswordRoute(
-  //         String? phone, String token, String page) =>
-  //     '$resetPassword?phone=$phone&token=$token&page=$page';
+  static String getResetPasswordRoute(
+          String? phone, String token, String page) =>
+      '$resetPassword?phone=$phone&token=$token&page=$page';
 }

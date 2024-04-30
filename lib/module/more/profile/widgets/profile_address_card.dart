@@ -5,6 +5,7 @@ import 'package:shoes_app/core/utils/styles.dart';
 import '../../../../core/utils/dimensions.dart';
 import '../../../../core/values/strings.dart';
 import '../../../../models/profile_model.dart';
+import '../../../address/saved_address_screen.dart';
 import '../../../cart/cart_controller.dart';
 
 class ProfileAddressCard extends StatelessWidget {
@@ -112,16 +113,16 @@ class ProfileAddressCard extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               GetBuilder<CartController>(builder: (cartController) {
                 return InkWell(
-                  // onTap: () => cartController.isLoading
-                  //     ? null
-                  //     : formAddress
-                  //         ? null
-                  //         : Navigator.of(context).push(MaterialPageRoute(
-                  //             builder: (BuildContext context) =>
-                  //                 SavedAddressScreen(
-                  //                     fromBilling: billingAddress,
-                  //                     fromShipping: !billingAddress,
-                  //                     fromProfile: fromProfile))),
+                  onTap: () => cartController.isLoading
+                      ? null
+                      : formAddress
+                          ? null
+                          : Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  SavedAddressScreen(
+                                      fromBilling: billingAddress,
+                                      fromShipping: !billingAddress,
+                                      fromProfile: fromProfile))),
                   child: Row(
                     children: [
                       Expanded(

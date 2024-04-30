@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:shoes_app/models/address_model.dart';
+import 'package:shoes_app/models/order_model.dart';
 import 'package:shoes_app/module/auth/forgot_password/forgot_pass_page.dart';
 import 'package:shoes_app/module/auth/forgot_password/verification_page.dart';
 import 'package:shoes_app/module/auth/login/login_page.dart';

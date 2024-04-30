@@ -11,17 +11,17 @@ class ShippingZonesModel {
     if (json['methods'] != null) {
       methods = <ShippingMethods>[];
       json['methods'].forEach((v) {
-        methods!.add(new ShippingMethods.fromJson(v));
+        methods!.add(ShippingMethods.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    if (this.methods != null) {
-      data['methods'] = this.methods!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    if (methods != null) {
+      data['methods'] = methods!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -40,14 +40,14 @@ class ShippingMethods {
 
   ShippingMethods(
       {this.id,
-        this.title,
-        this.cost,
-        this.enabled,
-        this.taxable,
-        this.methodId,
-        this.methodTitle,
-        this.methodDescription,
-        this.requires});
+      this.title,
+      this.cost,
+      this.enabled,
+      this.taxable,
+      this.methodId,
+      this.methodTitle,
+      this.methodDescription,
+      this.requires});
 
   ShippingMethods.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -58,23 +58,22 @@ class ShippingMethods {
     methodId = json['method_id'];
     methodTitle = json['method_title'];
     methodDescription = json['method_description'];
-    requires = json['requires'] != null
-        ? new Requires.fromJson(json['requires'])
-        : null;
+    requires =
+        json['requires'] != null ? Requires.fromJson(json['requires']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['cost'] = this.cost;
-    data['enabled'] = this.enabled;
-    data['taxable'] = this.taxable;
-    data['method_id'] = this.methodId;
-    data['method_title'] = this.methodTitle;
-    data['method_description'] = this.methodDescription;
-    if (this.requires != null) {
-      data['requires'] = this.requires!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['cost'] = cost;
+    data['enabled'] = enabled;
+    data['taxable'] = taxable;
+    data['method_id'] = methodId;
+    data['method_title'] = methodTitle;
+    data['method_description'] = methodDescription;
+    if (requires != null) {
+      data['requires'] = requires!.toJson();
     }
     return data;
   }
@@ -89,29 +88,29 @@ class Requires {
 
   Requires(
       {this.label,
-        this.value,
-        this.options,
-        this.couponsDiscounts,
-        this.either});
+      this.value,
+      this.options,
+      this.couponsDiscounts,
+      this.either});
 
   Requires.fromJson(Map<String, dynamic> json) {
     label = json['label'];
     value = json['value'];
     options =
-    json['options'] != null ? new Options.fromJson(json['options']) : null;
+        json['options'] != null ? Options.fromJson(json['options']) : null;
     couponsDiscounts = json['coupons_discounts'];
     either = json['either'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['label'] = this.label;
-    data['value'] = this.value;
-    if (this.options != null) {
-      data['options'] = this.options!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['label'] = label;
+    data['value'] = value;
+    if (options != null) {
+      data['options'] = options!.toJson();
     }
-    data['coupons_discounts'] = this.couponsDiscounts;
-    data['either'] = this.either;
+    data['coupons_discounts'] = couponsDiscounts;
+    data['either'] = either;
     return data;
   }
 }
@@ -132,11 +131,11 @@ class Options {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['coupon'] = this.coupon;
-    data['min_amount'] = this.minAmount;
-    data['either'] = this.either;
-    data['both'] = this.both;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['coupon'] = coupon;
+    data['min_amount'] = minAmount;
+    data['either'] = either;
+    data['both'] = both;
     return data;
   }
 }

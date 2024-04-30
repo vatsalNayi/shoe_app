@@ -77,7 +77,7 @@ class Settings {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (cost != null) {
       data['cost'] = cost!.toJson();
     }
@@ -97,7 +97,7 @@ class Cost {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['value'] = value;
     return data;

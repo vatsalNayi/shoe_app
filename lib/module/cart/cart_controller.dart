@@ -35,9 +35,10 @@
 
 import 'dart:convert';
 import 'dart:developer';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shoes_app/module/order/controller/order_controller.dart';
 import '../../controller/config_controller.dart';
 import '../../global_widgets/show_snackbar.dart';
 import '../../helper/price_converter.dart';
@@ -47,9 +48,10 @@ import '../../models/country.dart';
 import '../../models/product_model.dart';
 import '../../models/profile_model.dart';
 import '../../models/shipping_method_model.dart';
-import '../../models/shipping_zones_model.dart';
+import '../checkout/models/shipping_zones_model.dart';
 import '../../models/state.dart' as st;
 import '../../models/tax_model.dart';
+import '../address/location_controller.dart';
 import '../auth/controller/auth_controller.dart';
 import '../home/products/controller/product_controller.dart';
 import '../more/profile/profile_controller.dart';
@@ -370,14 +372,14 @@ class CartController extends GetxController implements GetxService {
     });
   }
 
-  // setSelectedCountry(Country? country) {
-  //   Get.find<OrderController>().emptyShippingMethodList();
-  //   _selectedState = null;
-  //   _matchedTaxRate = null;
-  //   _selectedCountry = country;
-  //   getDropdownStateList();
-  //   update();
-  // }
+  setSelectedCountry(Country? country) {
+    Get.find<OrderController>().emptyShippingMethodList();
+    _selectedState = null;
+    _matchedTaxRate = null;
+    _selectedCountry = country;
+    getDropdownStateList();
+    update();
+  }
 
   setSelectedState(st.State state) {
     log("In Set Selected State");
@@ -391,57 +393,59 @@ class CartController extends GetxController implements GetxService {
     log("Selected State");
   }
 
-  // Future<void> getShippingMethod() async {
-  //   _isLoading = true;
-  //   update();
-  //   for (ShippingZonesModel shippingZone
-  //       in Get.find<OrderController>().shippingZonesList!) {
-  //     if (Get.find<OrderController>().shippingMethodList != null) {
-  //       Get.find<OrderController>().emptyShippingMethodList();
-  //     }
-  //     if (Get.find<LocationController>().profileShippingSelected) {
-  //       if (shippingZone.name ==
-  //           Get.find<ProfileController>().profileShippingAddress!.stateIso) {
-  //         await Get.find<OrderController>().getShippingMethods(shippingZone.id);
-  //         break;
-  //       }
-  //     } else if (Get.find<LocationController>().addressList!.isNotEmpty &&
-  //         Get.find<LocationController>().selectedShippingAddressIndex != -1 &&
-  //         Get.find<LocationController>()
-  //                 .addressList![Get.find<LocationController>()
-  //                     .selectedShippingAddressIndex!]
-  //                 .state !=
-  //             null) {
-  //       if (shippingZone.name ==
-  //           Get.find<LocationController>()
-  //               .addressList![Get.find<LocationController>()
-  //                   .selectedShippingAddressIndex!]
-  //               .state!
-  //               .isoCode) {
-  //         print('Shipping Zone list');
-  //         print(shippingZone.id);
-  //         await Get.find<OrderController>().getShippingMethods(shippingZone.id);
-  //         break;
-  //       }
-  //     } else {
-  //       if (Get.find<LocationController>().addressList!.isNotEmpty &&
-  //           Get.find<LocationController>().selectedShippingAddressIndex != -1 &&
-  //           shippingZone.name ==
-  //               Get.find<LocationController>()
-  //                   .addressList![Get.find<LocationController>()
-  //                       .selectedShippingAddressIndex!]
-  //                   .country!
-  //                   .isoCode) {
-  //         debugPrint('Shipping Zone list');
-  //         debugPrint(shippingZone.id);
-  //         await Get.find<OrderController>().getShippingMethods(shippingZone.id);
-  //         break;
-  //       }
-  //     }
-  //   }
-  //   _isLoading = false;
-  //   update();
-  // }
+  Future<void> getShippingMethod() async {
+    _isLoading = true;
+    update();
+    for (ShippingZonesModel shippingZone
+        in Get.find<OrderController>().shippingZonesList!) {
+      if (Get.find<OrderController>().shippingMethodList != null) {
+        Get.find<OrderController>().emptyShippingMethodList();
+      }
+      if (Get.find<LocationController>().profileShippingSelected) {
+        if (shippingZone.name ==
+            Get.find<ProfileController>().profileShippingAddress!.stateIso) {
+          await Get.find<OrderController>().getShippingMethods(shippingZone.id);
+          break;
+        }
+      } else if (Get.find<LocationController>().addressList!.isNotEmpty &&
+          Get.find<LocationController>().selectedShippingAddressIndex != -1 &&
+          Get.find<LocationController>()
+                  .addressList![Get.find<LocationController>()
+                      .selectedShippingAddressIndex!]
+                  .state !=
+              null) {
+        if (shippingZone.name ==
+            Get.find<LocationController>()
+                .addressList![Get.find<LocationController>()
+                    .selectedShippingAddressIndex!]
+                .state!
+                .isoCode) {
+          if (kDebugMode) {
+            print('Shipping Zone list');
+            print(shippingZone.id);
+          }
+          await Get.find<OrderController>().getShippingMethods(shippingZone.id);
+          break;
+        }
+      } else {
+        if (Get.find<LocationController>().addressList!.isNotEmpty &&
+            Get.find<LocationController>().selectedShippingAddressIndex != -1 &&
+            shippingZone.name ==
+                Get.find<LocationController>()
+                    .addressList![Get.find<LocationController>()
+                        .selectedShippingAddressIndex!]
+                    .country!
+                    .isoCode) {
+          debugPrint('Shipping Zone list');
+          debugPrint(shippingZone.id.toString());
+          await Get.find<OrderController>().getShippingMethods(shippingZone.id);
+          break;
+        }
+      }
+    }
+    _isLoading = false;
+    update();
+  }
 
   void calculateProductPrice(List<CartModel?> _cartList) {
     _discount = 0;
