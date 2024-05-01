@@ -36,8 +36,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shoes_app/module/checkout/models/shipping_method_model.dart';
 import 'package:shoes_app/module/order/controller/order_controller.dart';
 import '../../controller/config_controller.dart';
 import '../../global_widgets/show_snackbar.dart';
@@ -47,7 +49,6 @@ import '../../models/cart_model.dart';
 import '../../models/country.dart';
 import '../../models/product_model.dart';
 import '../../models/profile_model.dart';
-import '../../models/shipping_method_model.dart';
 import '../checkout/models/shipping_zones_model.dart';
 import '../../models/state.dart' as st;
 import '../../models/tax_model.dart';
@@ -87,6 +88,7 @@ class CartController extends GetxController implements GetxService {
     update();
   }
 
+  final TextEditingController couponController = TextEditingController();
   List<CartModel?>? _cartList;
   List<CartModel?>? _guestCartList;
   List<CartModelAll>? _allCartList;

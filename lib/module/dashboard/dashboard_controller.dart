@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoes_app/module/cart/cart_page.dart';
+import 'package:shoes_app/module/categories/category_page.dart';
 import 'package:shoes_app/module/home/home_page.dart';
 import 'package:shoes_app/module/more/more_page.dart';
+import 'package:shoes_app/module/wishlist/wishlist_page.dart';
 
 class DashboardController extends GetxController {
   RxInt selectedIndex = 0.obs;
@@ -13,13 +15,11 @@ class DashboardController extends GetxController {
 
   RxList<Widget> pages = [
     const HomePage(),
-    const CartPage(),
-    // const CartPage(
-    //   fromNav: true,
-    // ),
-    // const LikePage(),
-    // const CategoriesPage(),
-    Container(),
+    const CartPage(
+      fromNav: true,
+    ),
+    const WishListPage(),
+    const CategoriesPage(),
     Container(),
     const MorePage(),
   ].obs;

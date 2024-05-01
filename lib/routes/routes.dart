@@ -52,24 +52,27 @@ class Routes {
   static String getSignUpRoute() => signUpPage;
 
   static String getProductDetailsRoute(
-      int? productID, String? url, bool formSplash) {
+    int? productID,
+    String? url,
+    bool formSplash,
+  ) {
     return '$productDetails?id=$productID&url=$url&formSplash=${formSplash.toString()}';
   }
 
-  // static String getCategoryProductRoute(CategoryModel category) {
-  //   String _data = base64Encode(utf8.encode(jsonEncode(category.toJson())));
-  //   return '$categoryProduct?data=$_data';
-  // }
+  static String getCategoryProductRoute(CategoryModel category) {
+    String _data = base64Encode(utf8.encode(jsonEncode(category.toJson())));
+    return '$categoryProduct?data=$_data';
+  }
 
-  // static String getCartRoute({CartModel? cartModel, bool fromOrder = false}) {
-  //   String? _cartModel;
-  //   if (cartModel != null) {
-  //     print('-------${cartModel.toString()}');
-  //     _cartModel = base64Encode(utf8.encode(jsonEncode(cartModel.toJson())));
-  //   }
-  //   debugPrint("From Order: $fromOrder");
-  //   return '$cart?cartModel=$_cartModel&fromOrder=${fromOrder.toString()}';
-  // }
+  static String getCartRoute({CartModel? cartModel, bool fromOrder = false}) {
+    String? _cartModel;
+    if (cartModel != null) {
+      print('-------${cartModel.toString()}');
+      _cartModel = base64Encode(utf8.encode(jsonEncode(cartModel.toJson())));
+    }
+    debugPrint("From Order: $fromOrder");
+    return '$cart?cartModel=$_cartModel&fromOrder=${fromOrder.toString()}';
+  }
 
   // static String getWriteReviewRoute(int? productId) {
   //   // String _item;

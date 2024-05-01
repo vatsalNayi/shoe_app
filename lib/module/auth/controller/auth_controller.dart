@@ -5,6 +5,9 @@ import 'package:shoes_app/global_widgets/show_snackbar.dart';
 import 'package:shoes_app/models/response_model.dart';
 import 'package:shoes_app/models/signup_body.dart';
 import 'package:shoes_app/module/auth/auth_repo/auth_repo.dart';
+import 'package:shoes_app/module/cart/cart_controller.dart';
+import 'package:shoes_app/module/wishlist/controller/wish_controller.dart';
+import 'package:shoes_app/routes/pages.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
@@ -72,9 +75,9 @@ class AuthController extends GetxController implements GetxService {
         }
       }
       // Get.find<search.SearchController>().clearSearchAddress();
-      // Get.find<WishListController>().getWishList();
-      // Get.find<CartController>().getCartList();
-      // Get.offAllNamed(Routes.bottomBarPage);
+      Get.find<WishListController>().getWishList();
+      Get.find<CartController>().getCartList();
+      Get.offAllNamed(Routes.dashboardPage);
       // authenticateWithBiometric(response.body['token'], false);
     } else if (response.statusCode == 403 &&
         response.body['code'] == '[jwt_auth] incorrect_password') {

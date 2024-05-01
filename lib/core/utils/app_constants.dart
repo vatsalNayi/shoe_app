@@ -12,9 +12,8 @@ class AppConstants {
   static const String DOKAN_ADMIN_STORE_NAME = 'WooMond Mall';
 
   // static const String BASE_URL = 'http://192.168.1.157/woomond';
-  static const String BASE_URL = 'https://woomond.dev.com';
-  // 'https://www.reeshopindia.com/woomond/wp-json/woomond/';
-  // static const String BASE_URL = 'https://wp.6amtech.com/woomond1';
+  // static const String BASE_URL = 'https://woomond.dev.com';
+  static const String BASE_URL = 'https://ecomtheme2.raindropsinfotech.com';
   static const String CONSUMER_KEY =
       // 'ck_9f1428f846c201a3d86f83402b993c3f4b85e5de';
       'ck_2315e98c74131a18a33c2681a807e9788ee4a1ab';

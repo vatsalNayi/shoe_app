@@ -9,6 +9,7 @@ import 'package:shoes_app/global_widgets/custom_button.dart';
 import 'package:shoes_app/global_widgets/custom_textfield.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
 import 'package:shoes_app/global_widgets/textfield_decoration.dart';
+import 'package:shoes_app/module/auth/controller/auth_controller.dart';
 import 'package:shoes_app/module/auth/login/login_controller.dart';
 import 'package:shoes_app/routes/pages.dart';
 
@@ -117,7 +118,7 @@ class LoginPage extends StatelessWidget {
                         borderRadius: 5.r,
                         child: CustomTextfield(
                           controller: controller.usernameEmailController,
-                          validator: Validations.validateUser,
+                          // validator: Validations.validateUser,
                           hintText: 'Username / Email',
                           hintStyle: GoogleFonts.poppins(
                             color: AppColors.brightGrey,
@@ -150,7 +151,7 @@ class LoginPage extends StatelessWidget {
                               letterSpacing: 0.44,
                             ),
                             textStyle: GoogleFonts.poppins(
-                              color: AppColors.black,
+                              color: AppColors.brightGrey,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w400,
                               letterSpacing: 0.44,
@@ -198,31 +199,20 @@ class LoginPage extends StatelessWidget {
                         height: 45.h,
                       ),
 
-                      CustomButton(
-                        loading: false,
-                        onPress: () async {
-                          Get.toNamed(Routes.dashboardPage);
-                          if (_formKey.currentState!.validate()) {
-                            // Map<String, dynamic> userLoginData = {
-                            //   'username': controller
-                            //       .usernameEmailController.text
-                            //       .trim(),
-                            //   'password':
-                            //       controller.passwordController.text.trim(),
-                            // };
-                            // controller.login(body: userLoginData);
-                            // verify phone number for firebase auth (signup)
-                            // controller.verifyPhoneNumber(
-                            //     phoneNumber:
-                            //         '+91${controller.phoneController.text.toString()}');
-
-                            // controller.loginWoo(authController);
-                          } else {
-                            debugPrint('form not validated');
-                          }
-                        },
-                        btnText: 'Login',
-                      ),
+                      GetBuilder<AuthController>(builder: (authController) {
+                        return CustomButton(
+                          loading: false,
+                          onPress: () async {
+                            // Get.toNamed(Routes.dashboardPage);
+                            if (_formKey.currentState!.validate()) {
+                              controller.loginWoo(authController);
+                            } else {
+                              debugPrint('form not validated');
+                            }
+                          },
+                          btnText: 'Login',
+                        );
+                      }),
 
                       SizedBox(
                         height: 30.h,

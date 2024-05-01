@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shoes_app/core/values/colors.dart';
 
 class CustomTextfield extends StatefulWidget {
   final String hintText;
@@ -92,12 +93,18 @@ class _CustomTextfieldState extends State<CustomTextfield> {
             )
           : widget.inputDecoration!,
       validator: widget.validator,
-      style: GoogleFonts.poppins(
-        color: Colors.grey,
-        fontSize: 12.sp,
-        fontWeight: FontWeight.w400,
-        // height: 0.12,
-      ),
+      style: widget.textStyle ??
+          GoogleFonts.poppins(
+            color: AppColors.brightGrey,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0.44,
+          ),
+      // GoogleFonts.poppins(
+      //   color: Colors.grey,
+      //   fontSize: 12.sp,
+      //   fontWeight: FontWeight.w400,
+      // ),
     );
   }
 }

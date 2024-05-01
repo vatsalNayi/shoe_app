@@ -225,9 +225,7 @@ class ApiClient extends GetxService {
             : '${uri.contains('?') ? '&' : '?'}consumer_key=') +
         (apiVersion == WooApiVersion.noWooApi
             ? ''
-            : AppConstants.CONSUMER_KEY +
-                '&consumer_secret=' +
-                AppConstants.CUSTOMER_SECRET));
+            : '${AppConstants.CONSUMER_KEY}&consumer_secret=${AppConstants.CUSTOMER_SECRET}'));
   }
 }
 

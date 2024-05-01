@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoes_app/models/address_model.dart';
+import 'package:shoes_app/models/cart_model.dart';
+import 'package:shoes_app/models/category_model.dart';
 import 'package:shoes_app/models/order_model.dart';
 import 'package:shoes_app/module/auth/forgot_password/forgot_pass_page.dart';
 import 'package:shoes_app/module/auth/forgot_password/verification_page.dart';
@@ -70,12 +73,25 @@ class AppPages {
       transition: Transition.rightToLeftWithFade,
       transitionDuration: const Duration(milliseconds: 500),
     ),
+
     GetPage(
-      name: Routes.cart,
-      page: () => CartPage(),
-      transition: Transition.rightToLeftWithFade,
-      transitionDuration: const Duration(milliseconds: 500),
-    ),
+        name: Routes.cart,
+        page: () {
+          //cartModel
+          CartModel? _cartModel;
+          if (Get.parameters['cartModel'] != 'null') {
+            _cartModel = CartModel.fromJson(jsonDecode(utf8.decode(base64Decode(
+                Get.parameters['cartModel']!.replaceAll(' ', '+')))));
+          }
+
+          debugPrint("From Order: ${Get.parameters['fromOrder'] == 'true'}");
+
+          return CartPage(
+              fromNav: false,
+              cartModel: _cartModel,
+              fromOrder: Get.parameters['fromOrder'] == 'true');
+        }),
+
     // GetPage(
     //   name: Routes.categoryProduct,
     //   page: () {

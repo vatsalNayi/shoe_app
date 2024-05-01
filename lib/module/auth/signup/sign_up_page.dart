@@ -9,6 +9,7 @@ import 'package:shoes_app/global_widgets/custom_button.dart';
 import 'package:shoes_app/global_widgets/custom_textfield.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
 import 'package:shoes_app/global_widgets/textfield_decoration.dart';
+import 'package:shoes_app/module/auth/controller/auth_controller.dart';
 import 'package:shoes_app/module/auth/signup/sign_up_controller.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -310,51 +311,18 @@ class _SignUpPageState extends State<SignUpPage> {
                   SizedBox(
                     height: 35.h,
                   ),
-                  CustomButton(
-                    loading: false,
-                    onPress: () {
-                      if (_formKey.currentState!.validate()) {
-                        // if (controller.selectedDate!.value.isNotEmpty &&
-                        //     controller.selectedDate!.value != '') {
-                        //   debugPrint('reached at selected date not empty');
-                        //   controller.isVisibleDateError.value = false;
-
-                        /// process after validation of input fields
-                        // Map<String, dynamic> userRegisterData = {
-                        //   'firstname':
-                        //       controller.firstNameController.text,
-                        //   'lastname': controller.lastNameController.text,
-                        //   'username': controller.usernameController.text,
-                        //   'email': controller.emailController.text,
-                        //   // 'langid': 'en', // default value (for now)
-                        //   // 'mobile': controller.phoneController.text,
-                        //   // 'birthday': controller.selectedDate!.value,
-                        //   // 'siteid': '1.', //default value(country wise)
-                        //   'password': controller.passwordController.text,
-                        //   // 'password_confirmation':
-                        //   //     controller.confirmPasswordController.text,
-                        // };
-                        // Register api call
-                        // controller.register(
-                        //   apiSegment: '',
-                        //   apiVersion: '',
-                        //   body: userRegisterData,
-                        // );
-
-                        // Register woo api call
-                        // controller.registerWoo(authController);
-                        // } else {
-                        // controller.isVisibleDateError.value = true;
-                        // showSnackbar(
-                        //   title: 'Message',
-                        //   message: 'Please select birth date',
-                        //   isError: true,
-                        // );
-                        // }
-                      }
-                    },
-                    btnText: 'Next',
-                  ),
+                  GetBuilder<AuthController>(builder: (authController) {
+                    return CustomButton(
+                      loading: false,
+                      onPress: () {
+                        if (_formKey.currentState!.validate()) {
+                          // Register woo api call
+                          controller.registerWoo(authController);
+                        }
+                      },
+                      btnText: 'Next',
+                    );
+                  }),
 
                   SizedBox(
                     height: 30.h,

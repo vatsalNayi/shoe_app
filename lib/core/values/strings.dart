@@ -1,6 +1,4 @@
 class ApiStrings {
-  // static const baseUrl = 'https://cuisinequest.raindropsinfotech.com/';
-  // static const baseUrl = 'http://192.168.1.157:8080/api/';
   static const baseUrl = 'https://woomond.dev.com';
   // static const registerApi = 'register';
   static const registerApi = '/customers';
@@ -242,4 +240,6 @@ class ImagePath {
   static const String shoeCart3 = '${BaseImagePath.imagePath}shoe_cart_3.png';
   static const String checkbox = '${BaseImagePath.imagePath}checkbox.svg';
   static const String checkboxFill = '${BaseImagePath.imagePath}checkbox.svg';
+  static const String wishedItem1 =
+      '${BaseImagePath.imagePath}wished_item_1.png';
 }

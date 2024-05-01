@@ -9,6 +9,9 @@ import 'package:shoes_app/helper/di_container.dart' as di;
 import 'package:shoes_app/routes/pages.dart';
 
 void main() async {
+  if (GetPlatform.isIOS || GetPlatform.isAndroid) {
+    HttpOverrides.global = MyHttpOverrides();
+  }
   WidgetsFlutterBinding.ensureInitialized();
   Map<String, Map<String, String>> _languages = await di.init();
   runApp(

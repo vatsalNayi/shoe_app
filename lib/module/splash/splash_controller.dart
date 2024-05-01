@@ -12,7 +12,7 @@ class SplashController extends GetxController {
     Future.delayed(const Duration(seconds: 3), () {
       // Get.find<ConfigController>().getTaxClasses();
       //
-      Get.offAllNamed(Routes.welcomePage);
+      Get.offAllNamed(Routes.dashboardPage);
       // }
     });
   }
