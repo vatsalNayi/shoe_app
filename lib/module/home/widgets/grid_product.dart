@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
+import 'package:shoes_app/models/product_model.dart';
 
 class GridProducts extends StatelessWidget {
-  const GridProducts({
+  ProductModel productList;
+  GridProducts({
     super.key,
+    required this.productList,
   });
 
   @override
@@ -24,9 +28,15 @@ class GridProducts extends StatelessWidget {
           Center(
             child: Stack(
               children: [
-                Image.asset(
-                  ImagePath.shoe1,
-                  height: 65.h,
+                // Image.asset(
+                //   ImagePath.shoe1,
+                //   height: 65.h,
+                // ),
+                Image.network(
+                  '${productList.images?.first.src}',
+                  fit: BoxFit.cover,
+                  height: 100.h,
+                  width: 150.w,
                 ),
                 Positioned.fill(
                   top: -3.0,
@@ -45,7 +55,10 @@ class GridProducts extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          const Text('(4.0)'),
+                          Text(
+                            // '(4.0)',
+                            '(${productList.ratingCount})',
+                          ),
                           SizedBox(
                             width: 1.w,
                           ),
@@ -64,7 +77,8 @@ class GridProducts extends StatelessWidget {
             height: 22.h,
           ),
           Text(
-            'Nike Air Jorden x Air (Men’s)',
+            // 'Nike Air Jorden x Air (Men’s)',
+            '${productList.name}',
             style: GoogleFonts.poppins(
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,
@@ -76,7 +90,8 @@ class GridProducts extends StatelessWidget {
           Row(
             children: [
               Text(
-                '\$130',
+                // '\$130',
+                '₹${productList.salePrice}',
                 style: GoogleFonts.poppins(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
@@ -86,7 +101,8 @@ class GridProducts extends StatelessWidget {
                 width: 8.w,
               ),
               Text(
-                '\$135.00',
+                // '\$135.00',
+                '₹${productList.regularPrice}',
                 style: GoogleFonts.poppins(
                   decoration: TextDecoration.lineThrough,
                   fontSize: 14.sp,

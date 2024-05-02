@@ -20,7 +20,6 @@ class DashboardController extends GetxController {
     ),
     const WishListPage(),
     const CategoriesPage(),
-    Container(),
     const MorePage(),
   ].obs;
 }

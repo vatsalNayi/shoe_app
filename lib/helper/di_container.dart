@@ -23,6 +23,8 @@ import 'package:shoes_app/module/home/products/controller/product_controller.dar
 import 'package:shoes_app/module/home/products/repository/product_repo.dart';
 import 'package:shoes_app/module/order/controller/order_controller.dart';
 import 'package:shoes_app/module/order/repository/order_repo.dart';
+import 'package:shoes_app/module/search/controller/search_controller.dart';
+import 'package:shoes_app/module/search/repository/search_repo.dart';
 import 'package:shoes_app/module/wishlist/controller/wish_controller.dart';
 import 'package:shoes_app/module/wishlist/repository/wish_repo.dart';
 import '../module/cart/cart_controller.dart';
@@ -63,8 +65,8 @@ Future<Map<String, Map<String, String>>> init() async {
       () => WishRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   // Get.lazyPut(() => RoughRepo(apiClient: Get.find()));
   // Get.lazyPut(() => ShopRepo(apiClient: Get.find()));
-  // Get.lazyPut(
-  //     () => SearchRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
+  Get.lazyPut(
+      () => SearchRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   // Get.lazyPut(() => BlogRepo(apiClient: Get.find()));
   Get.lazyPut(() => LocationRepo(sharedPreferences: Get.find()));
   // Get.lazyPut(() => BannerRepo(apiClient: Get.find()));
@@ -91,7 +93,7 @@ Future<Map<String, Map<String, String>>> init() async {
   // Get.lazyPut(() =>
   //     RoughController(sharedPreferences: Get.find(), roughRepo: Get.find()));
   // Get.lazyPut(() => ShopController(shopRepo: Get.find()));
-  // Get.lazyPut(() => SearchController(searchRepo: Get.find()));
+  Get.lazyPut(() => SearchController(searchRepo: Get.find()));
   // Get.lazyPut(() => BlogController(blogRepo: Get.find()));
   Get.lazyPut(() => LocationController(
       locationRepo: Get.find(), sharedPreferences: Get.find()));

@@ -313,7 +313,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   GetBuilder<AuthController>(builder: (authController) {
                     return CustomButton(
-                      loading: false,
+                      loading: authController.isLoading,
                       onPress: () {
                         if (_formKey.currentState!.validate()) {
                           // Register woo api call

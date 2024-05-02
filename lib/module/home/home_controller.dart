@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shoes_app/core/values/strings.dart';
+import 'package:shoes_app/models/category_model.dart';
 import 'package:shoes_app/module/auth/controller/auth_controller.dart';
 import 'package:shoes_app/module/categories/controller/category_controller.dart';
 import 'package:shoes_app/module/home/products/controller/product_controller.dart';
@@ -29,6 +30,8 @@ class HomeController extends GetxController {
   void loadData(bool reload) {
     Get.find<WishListController>().getWishList();
     Get.find<CategoryController>().getCategoryList(reload, 1);
+    // controller.getSubCategoryList(controller.selectedMainCategoryData);
+    // Get.find<CategoryController>().getSubCategoryList();
     Get.find<ProductController>().getProductList(1, reload);
     Get.find<ProductController>().getPopularProductList(reload, false, 1);
     Get.find<ProductController>().getSaleProductList(reload, false, 1);

@@ -5,6 +5,7 @@ import 'package:shoes_app/models/address_model.dart';
 import 'package:shoes_app/models/cart_model.dart';
 import 'package:shoes_app/models/category_model.dart';
 import 'package:shoes_app/models/order_model.dart';
+import 'package:shoes_app/models/product_model.dart';
 import 'package:shoes_app/module/auth/forgot_password/forgot_pass_page.dart';
 import 'package:shoes_app/module/auth/forgot_password/verification_page.dart';
 import 'package:shoes_app/module/auth/login/login_page.dart';
@@ -66,10 +67,10 @@ class AppPages {
     GetPage(
       name: Routes.productDetails,
       page: () => ProductDetails(
-          // product: ProductModel(id: int.parse(Get.parameters['id']!)),
-          // url: Get.parameters['url'],
-          // formSplash: Get.parameters['formSplash'] == 'true',
-          ),
+        product: ProductModel(id: int.parse(Get.parameters['id']!)),
+        url: Get.parameters['url'],
+        formSplash: Get.parameters['formSplash'] == 'true',
+      ),
       transition: Transition.rightToLeftWithFade,
       transitionDuration: const Duration(milliseconds: 500),
     ),

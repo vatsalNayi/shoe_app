@@ -57,9 +57,11 @@ class CartPage extends StatelessWidget {
                   _cartList = cartController.cartList;
                 }
 
-                cartController.calculateProductPrice(_cartList!);
+                if (_cartList != null) {
+                  cartController.calculateProductPrice(_cartList!);
+                }
                 _shippingFee = cartController.calculateShippingFee(
-                    _cartList,
+                    _cartList!,
                     ((orderController.shippingIndex != -1 &&
                             orderController.shippingMethodList!.isNotEmpty)
                         ? orderController

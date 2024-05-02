@@ -201,7 +201,7 @@ class LoginPage extends StatelessWidget {
 
                       GetBuilder<AuthController>(builder: (authController) {
                         return CustomButton(
-                          loading: false,
+                          loading: authController.isLoading,
                           onPress: () async {
                             // Get.toNamed(Routes.dashboardPage);
                             if (_formKey.currentState!.validate()) {
