@@ -110,14 +110,21 @@ class CartPage extends StatelessWidget {
                             ListView.separated(
                               shrinkWrap: true,
                               padding: EdgeInsets.symmetric(horizontal: 24.w),
-                              itemCount: 3,
+                              itemCount: 2,
+                              // itemCount: _cartList.length,
                               separatorBuilder: (context, index) {
                                 return SizedBox(
                                   height: 24.h,
                                 );
                               },
                               itemBuilder: (context, index) {
-                                return CartItem(controller: cartController);
+                                CartModel? cartData =
+                                    _cartList!.elementAt(index);
+                                return CartItem(
+                                  controller: cartController,
+                                  cartIndex: index,
+                                  cartData: cartData,
+                                );
                               },
                             ),
                             SizedBox(

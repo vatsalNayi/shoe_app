@@ -29,26 +29,26 @@ class NoDataScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Row(),
-            Image.asset(
-              ImagePath.tShirt2Png,
-              // (type == NoDataType.CART)
-              //     ? Images.empty_cart
-              //     : type == NoDataType.COUPON
-              //         ? Images.empty_coupon
-              //         : type == NoDataType.PAGES
-              //             ? Images.no_pages_found
-              //             : type == NoDataType.NOTIFICATION
-              //                 ? Images.no_notification_found
-              //                 : type == NoDataType.ORDER
-              //                     ? Images.no_order_found
-              //                     : type == NoDataType.WISH
-              //                         ? Images.empty_wishlist
-              //                         : type == NoDataType.SEARCH
-              //                             ? Images.no_search_found
-              //                             : Images.no_internet,
-              width: MediaQuery.of(context).size.height * 0.20,
-              height: MediaQuery.of(context).size.height * 0.20,
-            ),
+            // // Image.asset(
+            // //   ImagePath.tShirt2Png,
+            // (type == NoDataType.CART)
+            //     ? Images.empty_cart
+            //     : type == NoDataType.COUPON
+            //         ? Images.empty_coupon
+            //         : type == NoDataType.PAGES
+            //             ? Images.no_pages_found
+            //             : type == NoDataType.NOTIFICATION
+            //                 ? Images.no_notification_found
+            //                 : type == NoDataType.ORDER
+            //                     ? Images.no_order_found
+            //                     : type == NoDataType.WISH
+            //                         ? Images.empty_wishlist
+            //                         : type == NoDataType.SEARCH
+            //                             ? Images.no_search_found
+            //                             : Images.no_internet,
+            // // width: MediaQuery.of(context).size.height * 0.20,
+            // // height: MediaQuery.of(context).size.height * 0.20,
+            // // ),
             const SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
             Text(
               text!,

@@ -58,6 +58,7 @@ dependencies:
   flutter_paystack: ^1.0.7
   flutterwave_standard: ^1.0.7
   webview_flutter: ^3.0.4
+  connectivity_plus: ^6.0.3
 
 dev_dependencies:
   flutter_test:
@@ -85,6 +86,8 @@ flutter:
   assets:
     - assets/images/
     - assets/language/
+    - assets/config/
+    - assets/country_state/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

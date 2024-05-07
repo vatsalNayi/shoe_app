@@ -233,6 +233,7 @@ class ImagePath {
   static const String ratings = '${BaseImagePath.imagePath}ratings.svg';
   static const String shoe3 = '${BaseImagePath.imagePath}shoe_3.png';
   static const String saved = '${BaseImagePath.imagePath}saved.svg';
+  static const String unsave = '${BaseImagePath.imagePath}unsave.svg';
   static const String share = '${BaseImagePath.imagePath}share.svg';
   static const String shadow = '${BaseImagePath.imagePath}shadow.png';
   static const String shoeCart1 = '${BaseImagePath.imagePath}shoe_cart_1.png';

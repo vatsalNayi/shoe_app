@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
 import 'package:shoes_app/models/product_model.dart';
+import 'package:shoes_app/module/cart/cart_controller.dart';
+import 'package:shoes_app/module/home/products/controller/product_controller.dart';
 
 class GridProducts extends StatelessWidget {
   ProductModel productList;
@@ -184,20 +187,27 @@ class GridProducts extends StatelessWidget {
               SizedBox(
                 width: 10.w,
               ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  width: 31.w,
-                  height: 22.h,
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(10.r),
+              GetBuilder<ProductController>(builder: (productController) {
+                return GestureDetector(
+                  onTap: () {
+                    Get.find<CartController>().addToCart(
+                      productController.cartModel,
+                      productController.cartIndex,
+                    );
+                  },
+                  child: Container(
+                    width: 31.w,
+                    height: 22.h,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                    child: const SvgIcon(
+                      imagePath: ImagePath.cartBlack,
+                    ),
                   ),
-                  child: const SvgIcon(
-                    imagePath: ImagePath.cartBlack,
-                  ),
-                ),
-              ),
+                );
+              }),
             ],
           )
         ],

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/custom_appbar.dart';
 import 'package:shoes_app/global_widgets/custom_textfield.dart';
@@ -164,7 +163,8 @@ class HomePage extends StatelessWidget {
                       return productController.productList == null
                           ? const SizedBox()
                           : productController.isLoading
-                              ? const CupertinoActivityIndicator()
+                              ? const Center(
+                                  child: CupertinoActivityIndicator())
                               : GridView.builder(
                                   itemCount: productList!.length,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -180,11 +180,6 @@ class HomePage extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
                                       onTap: () {
-                                        // Get.toNamed(Routes.productDetails,
-                                        //     arguments: {
-                                        //       'product': productList[index],
-                                        //     });
-
                                         Get.toNamed(
                                             Routes.getProductDetailsRoute(
                                           productList[index].id,

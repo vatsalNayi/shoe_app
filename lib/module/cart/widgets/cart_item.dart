@@ -4,16 +4,20 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
+import 'package:shoes_app/models/cart_model.dart';
 import '../../../core/values/colors.dart';
 import '../cart_controller.dart';
 
 class CartItem extends StatelessWidget {
+  final CartController controller;
+  final CartModel? cartData;
+  final int cartIndex;
   const CartItem({
     super.key,
     required this.controller,
+    this.cartData,
+    required this.cartIndex,
   });
-
-  final CartController controller;
 
   @override
   Widget build(BuildContext context) {

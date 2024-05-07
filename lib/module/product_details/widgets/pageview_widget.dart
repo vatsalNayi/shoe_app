@@ -4,10 +4,16 @@ import 'package:get/get.dart';
 import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
+import 'package:shoes_app/models/product_model.dart';
 import 'package:shoes_app/module/product_details/product_details_controller.dart';
+import 'package:shoes_app/module/wishlist/controller/wish_controller.dart';
 
 class PageViewWidget extends StatelessWidget {
-  PageViewWidget({super.key});
+  final product;
+  PageViewWidget({
+    super.key,
+    this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +25,13 @@ class PageViewWidget extends StatelessWidget {
           SizedBox(
             height: 250.h,
             // width: 200.w,
-            child: PageView(
+            child: PageView.builder(
               controller: controller.pageController,
               onPageChanged: controller.onPageChanged,
-              children: <Widget>[
-                Stack(
+              itemCount: product!.images!.length,
+              itemBuilder: (context, index) {
+                ImageModel imageData = product!.images!.elementAt(index);
+                return Stack(
                   children: [
                     Positioned(
                       right: 0.0,
@@ -44,9 +52,7 @@ class PageViewWidget extends StatelessWidget {
                     ),
                     Positioned.fill(
                       bottom: -11,
-                      child: Image.asset(
-                        ImagePath.shoe3,
-                      ),
+                      child: Image.network('${imageData.src}'),
                     ),
                     Positioned.fill(
                       child: Align(
@@ -65,9 +71,21 @@ class PageViewWidget extends StatelessWidget {
                         alignment: Alignment.topRight,
                         child: Column(
                           children: [
-                            const SvgIcon(
-                              imagePath: ImagePath.saved,
-                            ),
+                            GetBuilder<WishListController>(
+                                builder: (wishlistController) {
+                              return GestureDetector(
+                                onTap: () async {
+                                  Get.find<WishListController>()
+                                      .addProductToWishlist(product!);
+                                },
+                                child: SvgIcon(
+                                  imagePath: wishlistController.wishIdList
+                                          .contains(product!.id)
+                                      ? ImagePath.saved
+                                      : ImagePath.unsave,
+                                ),
+                              );
+                            }),
                             SizedBox(
                               height: 11.h,
                             ),
@@ -87,20 +105,87 @@ class PageViewWidget extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-                Container(
-                  height: 100.h,
-                  width: 100.w,
-                  color: AppColors.lightGreen,
-                  child: const Center(child: Text('Page 2')),
-                ),
-                Container(
-                  height: 100.h,
-                  width: 100.w,
-                  color: Colors.red,
-                  child: const Center(child: Text('Page 3')),
-                ),
-              ],
+                );
+              },
+              // children: <Widget>[
+              // Stack(
+              //   children: [
+              //     Positioned(
+              //       right: 0.0,
+              //       bottom: 25.0,
+              //       child: Container(
+              //         width: 340.w,
+              //         height: 159.h,
+              //         decoration: BoxDecoration(
+              //             color: AppColors.lightGreen.withOpacity(0.4),
+              //             borderRadius: BorderRadius.only(
+              //               bottomLeft: Radius.circular(20.r),
+              //               topLeft: Radius.circular(20.r),
+              //             )),
+              //         child: Center(
+              //           child: Container(), // empty Container
+              //         ),
+              //       ),
+              //     ),
+              //     Positioned.fill(
+              //       bottom: -11,
+              //       child: Image.asset(
+              //         ImagePath.shoe3,
+              //       ),
+              //     ),
+              //     Positioned.fill(
+              //       child: Align(
+              //         alignment: Alignment.bottomCenter,
+              //         child: Image.asset(
+              //           ImagePath.shadow,
+              //           width: 300.w,
+              //           height: 12.h,
+              //         ),
+              //       ),
+              //     ),
+              //     Positioned.fill(
+              //       top: 24.0,
+              //       right: 24.0,
+              //       child: Align(
+              //         alignment: Alignment.topRight,
+              //         child: Column(
+              //           children: [
+              //             const SvgIcon(
+              //               imagePath: ImagePath.saved,
+              //             ),
+              //             SizedBox(
+              //               height: 11.h,
+              //             ),
+              //             Container(
+              //               width: 28.w,
+              //               height: 28.h,
+              //               decoration: const BoxDecoration(
+              //                 color: AppColors.white,
+              //                 shape: BoxShape.circle,
+              //               ),
+              //               child: const SvgIcon(
+              //                 imagePath: ImagePath.share,
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // Container(
+              //   height: 100.h,
+              //   width: 100.w,
+              //   color: AppColors.lightGreen,
+              //   child: const Center(child: Text('Page 2')),
+              // ),
+              // Container(
+              //   height: 100.h,
+              //   width: 100.w,
+              //   color: Colors.red,
+              //   child: const Center(child: Text('Page 3')),
+              // ),
+              // ],
             ),
           ),
           const SizedBox(height: 20.0),
@@ -114,7 +199,7 @@ class PageViewWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < product!.images!.length; i++)
           GetBuilder<ProductDetailsController>(builder: (controller) {
             return Container(
               width: 10.0,
