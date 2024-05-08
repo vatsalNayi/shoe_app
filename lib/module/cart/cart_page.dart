@@ -9,6 +9,7 @@ import 'package:shoes_app/global_widgets/custom_appbar.dart';
 import 'package:shoes_app/global_widgets/custom_button.dart';
 import 'package:shoes_app/global_widgets/no_data_page.dart';
 import 'package:shoes_app/global_widgets/show_snackbar.dart';
+import 'package:shoes_app/helper/price_converter.dart';
 import 'package:shoes_app/models/cart_model.dart';
 import 'package:shoes_app/models/coupon_model.dart';
 import 'package:shoes_app/module/address/location_controller.dart';
@@ -17,6 +18,7 @@ import 'package:shoes_app/module/checkout/checkout_screen.dart';
 import 'package:shoes_app/module/checkout/models/shipping_method_model.dart';
 import 'package:shoes_app/module/coupon/controller/coupon_controller.dart';
 import 'package:shoes_app/module/more/profile/profile_controller.dart';
+import 'package:shoes_app/module/more/profile/widgets/profile_address_card.dart';
 import 'package:shoes_app/module/order/controller/order_controller.dart';
 import 'widgets/cart_item.dart';
 
@@ -110,8 +112,8 @@ class CartPage extends StatelessWidget {
                             ListView.separated(
                               shrinkWrap: true,
                               padding: EdgeInsets.symmetric(horizontal: 24.w),
-                              itemCount: 2,
-                              // itemCount: _cartList.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: _cartList.length,
                               separatorBuilder: (context, index) {
                                 return SizedBox(
                                   height: 24.h,
@@ -136,6 +138,18 @@ class CartPage extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  locationController.profileShippingSelected ==
+                                          true
+                                      // true
+                                      ? ProfileAddressCard(
+                                          title: 'select_shipping_address'.tr,
+                                          address: Get.find<ProfileController>()
+                                              .profileShippingAddress,
+                                          billingAddress: false,
+                                          fromProfile: false,
+                                        )
+                                      : const SizedBox(),
+                                  //
                                   Text(
                                     'Price Details',
                                     style: GoogleFonts.poppins(
@@ -160,7 +174,8 @@ class CartPage extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        '\$137.45',
+                                        // '\$137.45',
+                                        '₹${PriceConverter.convertPrice(cartController.productPrice.toString())}',
                                         style: GoogleFonts.poppins(
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.w500,
@@ -185,7 +200,8 @@ class CartPage extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        '10%',
+                                        // '10%',
+                                        '(-) ${PriceConverter.convertPrice(cartController.discount.toString())}',
                                         style: GoogleFonts.poppins(
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.w500,
@@ -235,9 +251,10 @@ class CartPage extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        '\$123.70',
+                                        // '\$123.70',
+                                        '₹${PriceConverter.convertPrice(_subTotal.toString())}',
                                         style: GoogleFonts.poppins(
-                                          fontSize: 16.sp,
+                                          fontSize: 18.sp,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.lightGreen,
                                         ),
@@ -275,7 +292,7 @@ class CartPage extends StatelessWidget {
                                           _shipping.methodDescription =
                                               _shippingFee.toString();
 
-                                          print(
+                                          debugPrint(
                                               'ShippingFee-->${_shippingFee.toString()}');
                                           //_shipping.title = _total.toString();
                                         }

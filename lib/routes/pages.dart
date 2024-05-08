@@ -6,13 +6,16 @@ import 'package:shoes_app/models/cart_model.dart';
 import 'package:shoes_app/models/category_model.dart';
 import 'package:shoes_app/models/order_model.dart';
 import 'package:shoes_app/models/product_model.dart';
+import 'package:shoes_app/module/address/add_address_screen.dart';
 import 'package:shoes_app/module/auth/forgot_password/forgot_pass_page.dart';
 import 'package:shoes_app/module/auth/forgot_password/verification_page.dart';
 import 'package:shoes_app/module/auth/login/login_page.dart';
 import 'package:shoes_app/module/auth/signup/sign_up_page.dart';
 import 'package:shoes_app/module/cart/cart_page.dart';
+import 'package:shoes_app/module/categories/categories_product_page.dart';
 import 'package:shoes_app/module/dashboard/dashboard_page.dart';
 import 'package:shoes_app/module/home/home_page.dart';
+import 'package:shoes_app/module/instamojo/instamojo_api_demo.dart';
 import 'package:shoes_app/module/product_details/product_details.dart';
 import 'package:shoes_app/module/splash/splash_page.dart';
 import 'package:shoes_app/module/welcome/welcome_page.dart';
@@ -93,24 +96,24 @@ class AppPages {
               fromOrder: Get.parameters['fromOrder'] == 'true');
         }),
 
-    // GetPage(
-    //   name: Routes.categoryProduct,
-    //   page: () {
-    //     List<int> _decode =
-    //         base64Decode(Get.parameters['data']!.replaceAll(' ', '+'));
-    //     CategoryModel _data =
-    //         CategoryModel.fromJson(jsonDecode(utf8.decode(_decode)));
-    //     return CategoryProductPage(category: _data);
-    //   },
-    //   transition: Transition.rightToLeftWithFade,
-    //   transitionDuration: const Duration(milliseconds: 500),
-    // ),
-    // GetPage(
-    //   name: Routes.instamojoApiDemo,
-    //   page: () => const InstaMojoApiDemo(),
-    //   transition: Transition.rightToLeftWithFade,
-    //   transitionDuration: const Duration(milliseconds: 500),
-    // ),
+    GetPage(
+      name: Routes.categoryProduct,
+      page: () {
+        List<int> _decode =
+            base64Decode(Get.parameters['data']!.replaceAll(' ', '+'));
+        CategoryModel _data =
+            CategoryModel.fromJson(jsonDecode(utf8.decode(_decode)));
+        return CategoryProductPage(category: _data);
+      },
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: Routes.instamojoApi,
+      page: () => const InstaMojoApi(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
     // GetPage(
     //   name: Routes.instamojoSdkDemo,
     //   page: () => const InstamojoSdkDemo(),
@@ -171,19 +174,19 @@ class AppPages {
     //   page: () => CouponScreen(formCart: Get.parameters['formCart'] == 'true'),
     // ),
     // GetPage(name: Routes.savedAddress, page: () => const SavedAddressScreen()),
-    // GetPage(
-    //     name: Routes.addAddress,
-    //     page: () {
-    //       return AddAddressScreen(
-    //         address: Get.parameters['address'] != 'null'
-    //             ? AddressModel.fromJson(jsonDecode(
-    //                 utf8.decode(base64Url.decode(Get.parameters['address']!))))
-    //             : null,
-    //         index: Get.parameters['index'] != 'null'
-    //             ? int.parse(Get.parameters['index']!)
-    //             : null,
-    //       );
-    //     }),
+    GetPage(
+        name: Routes.addAddress,
+        page: () {
+          return AddAddressScreen(
+            address: Get.parameters['address'] != 'null'
+                ? AddressModel.fromJson(jsonDecode(
+                    utf8.decode(base64Url.decode(Get.parameters['address']!))))
+                : null,
+            index: Get.parameters['index'] != 'null'
+                ? int.parse(Get.parameters['index']!)
+                : null,
+          );
+        }),
     // GetPage(
     //     name: Routes.orderDetails,
     //     page: () {

@@ -177,8 +177,6 @@ class ImagePath {
   static const String copyCoupon = '${BaseImagePath.imagePath}copy_coupon.png';
   static const String couponBg = '${BaseImagePath.imagePath}coupon_bg.png';
   static const String coupon = '${BaseImagePath.imagePath}coupon.png';
-  static const String chooseAddressImage =
-      '${BaseImagePath.imagePath}choose_address_image.png';
   static const String editAddress =
       '${BaseImagePath.imagePath}edit_address.png';
   static const String deleteAddress =
@@ -243,4 +241,6 @@ class ImagePath {
   static const String checkboxFill = '${BaseImagePath.imagePath}checkbox.svg';
   static const String wishedItem1 =
       '${BaseImagePath.imagePath}wished_item_1.png';
+  static const String chooseAddress =
+      '${BaseImagePath.imagePath}choose_address.png';
 }

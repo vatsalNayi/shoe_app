@@ -25,7 +25,8 @@ class CartItem extends StatelessWidget {
       contentPadding: EdgeInsets.only(left: 5.w, right: 10.h),
       tileColor: AppColors.bgGrey.withOpacity(0.5),
       title: Text(
-        'Ultra Boost shoes',
+        // 'Ultra Boost shoes',
+        cartData!.name ?? '',
         style: GoogleFonts.poppins(
           fontSize: 15.sp,
           fontWeight: FontWeight.w400,
@@ -41,12 +42,28 @@ class CartItem extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          Text(
-            '\$137.45',
-            style: GoogleFonts.poppins(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.w500,
-            ),
+          Row(
+            children: [
+              Text(
+                // '\$137.45',
+                '₹${cartData?.prices?.salePrice}',
+                style: GoogleFonts.poppins(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              SizedBox(
+                width: 10.w,
+              ),
+              Text(
+                '₹${cartData?.prices?.regularPrice}',
+                style: GoogleFonts.poppins(
+                  decoration: TextDecoration.lineThrough,
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -69,8 +86,9 @@ class CartItem extends StatelessWidget {
               color: AppColors.white,
               borderRadius: BorderRadius.circular(10.r),
             ),
-            child: Image.asset(
-              ImagePath.shoeCart1,
+            child: Image.network(
+              // ImagePath.shoeCart1,
+              '${cartData?.images?.first.src}',
               width: 52.w,
               height: 32.h,
             ),

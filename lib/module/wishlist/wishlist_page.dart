@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -24,47 +25,46 @@ class _WishListPageState extends State<WishListPage> {
   Widget build(BuildContext context) {
     return GetBuilder<WishListController>(builder: (wishListController) {
       return Scaffold(
-          backgroundColor: const Color.fromARGB(255, 249, 249, 249),
-          appBar: CustomAppBar(
-            // leadingIcon: ImagePath.backLeftSvg,
-            title: 'Favorites'.tr,
-          ),
-          body:
-              // wishListController.wishProductList != null
-              //     ? wishListController.wishProductList!.isNotEmpty ?
-              Container(
-            width: Get.width,
-            height: Get.height,
-            padding: EdgeInsets.all(25.w),
-            child: SingleChildScrollView(
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 3,
-                // itemCount: wishListController.wishProductList!.length, // TODO: uncomment after dynamic
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: Get.width / 680,
-                ),
-                itemBuilder: (context, index) {
-                  // ProductModel productData =
-                  //     wishListController.wishProductList!.elementAt(index);
-                  return WishedItems(
-                    // productData: productData,
-                    index: index,
-                  );
-                },
+        backgroundColor: const Color.fromARGB(255, 249, 249, 249),
+        appBar: CustomAppBar(
+          // leadingIcon: ImagePath.backLeftSvg,
+          title: 'Favorites'.tr,
+        ),
+        body: wishListController.wishProductList != null
+            ? wishListController.wishProductList!.isNotEmpty
+                ? Container(
+                    width: Get.width,
+                    height: Get.height,
+                    padding: EdgeInsets.all(25.w),
+                    child: SingleChildScrollView(
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: wishListController.wishProductList!.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: Get.width / 680,
+                        ),
+                        itemBuilder: (context, index) {
+                          ProductModel productData = wishListController
+                              .wishProductList!
+                              .elementAt(index);
+                          return WishedItems(
+                            productData: productData,
+                            index: index,
+                          );
+                        },
+                      ),
+                    ),
+                  )
+                : NoDataScreen(
+                    text: 'your_wish_list_is_empty'.tr, type: NoDataType.WISH)
+            : const Center(
+                child: CupertinoActivityIndicator(),
               ),
-            ),
-          )
-          //     : NoDataScreen(
-          //         text: 'your_wish_list_is_empty'.tr, type: NoDataType.WISH)
-          // : const Center(
-          //     child: CircularProgressIndicator(),
-          //   ),
-          );
+      );
     });
   }
 }

@@ -487,6 +487,7 @@ class ProductController extends GetxController implements GetxService {
       } else {
         _product = null;
         _product = ProductModel.fromJson(response.body);
+        log('getProductDetails log: ${_product?.name}');
       }
     } else {
       showCustomSnackBar(response.statusText);

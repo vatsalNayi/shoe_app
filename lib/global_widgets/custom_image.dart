@@ -23,8 +23,8 @@ class CustomImage extends StatelessWidget {
       height: height,
       width: width,
       fit: fit,
-      placeholder: (context, url) => Image.asset(ImagePath.placeholderPng,
-          height: height, width: width, fit: fit),
+      // placeholder: (context, url) => Image.asset(ImagePath.placeholderPng,
+      //     height: height, width: width, fit: fit),
       errorWidget: (context, url, error) =>
           Image.asset(placeholder, height: height, width: width, fit: fit),
     );

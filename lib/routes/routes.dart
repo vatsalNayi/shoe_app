@@ -11,7 +11,7 @@ class Routes {
   static const String dashboardPage = '/dashboardPage';
   static const String homePage = '/home';
   static const String productDetails = '/productDetails';
-  static const String instamojoApiDemo = '/instamojoApiDemo';
+  static const String instamojoApi = '/instamojoApi';
   static const String instamojoSdkDemo = '/instamojoSdkDemo';
   static const String instamojoPaymentPage = '/instamojoPaymentPage';
   static const String addAddressPage = '/addAddressPage';
@@ -85,7 +85,7 @@ class Routes {
   // static String getCouponRoute(bool formCart) =>
   //     '$coupon?formCart=${formCart.toString()}';
 
-  // static String getSavedAddressRoute() => savedAddress;
+  static String getSavedAddressRoute() => savedAddress;
   static String getAddAddressRoute(AddressModel? address, int index) {
     String? _address;
     if (address != null) {

@@ -137,7 +137,7 @@ class ProfileAddressCard extends StatelessWidget {
                                   width: 20,
                                   child: CircularProgressIndicator())
                               : Image.asset(
-                                  ImagePath.chooseAddressImage,
+                                  ImagePath.chooseAddress,
                                   height: 20,
                                   scale: 3,
                                 ),
@@ -271,7 +271,10 @@ class ProfileAddressCard extends StatelessWidget {
               SizedBox(
                   height: address != null ? Dimensions.PADDING_SIZE_SMALL : 0),
               address == null
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(
+                      child: Text('LOADING...'),
+                      // child: CircularProgressIndicator(),
+                    )
                   : (address!.country == '' &&
                           address!.state == '' &&
                           address!.firstName == '' &&

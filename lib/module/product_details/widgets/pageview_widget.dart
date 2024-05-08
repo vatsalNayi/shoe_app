@@ -23,7 +23,7 @@ class PageViewWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           SizedBox(
-            height: 250.h,
+            height: 225.h,
             // width: 200.w,
             child: PageView.builder(
               controller: controller.pageController,
@@ -51,8 +51,12 @@ class PageViewWidget extends StatelessWidget {
                       ),
                     ),
                     Positioned.fill(
-                      bottom: -11,
-                      child: Image.network('${imageData.src}'),
+                      bottom: -10,
+                      child: Image.network(
+                        '${imageData.src}',
+                        // height: 180.h,
+                        // width: 231.w,
+                      ),
                     ),
                     Positioned.fill(
                       child: Align(

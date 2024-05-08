@@ -50,7 +50,7 @@ class AddressCard extends StatelessWidget {
                         height: 20,
                         width: 20,
                         child: CircularProgressIndicator())
-                    : Image.asset(ImagePath.chooseAddressImage,
+                    : Image.asset(ImagePath.chooseAddress,
                         height: 25, scale: 3),
               ],
             ),
