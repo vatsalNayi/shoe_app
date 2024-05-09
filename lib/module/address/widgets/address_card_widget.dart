@@ -30,17 +30,21 @@ class AddressCardWidget extends StatelessWidget {
           Dimensions.PADDING_SIZE_DEFAULT, 15, 0),
       child: InkWell(
         onTap: () {
-          if (fromProfile! && fromShipping) {
-            Get.find<ProfileController>()
-                .setProfileAddress(addressModel!, fromShipping);
-            Get.find<LocationController>()
-                .setProfileSelectedShippingAddressIndex(index);
+          if (fromProfile != null) {
+            if (addressModel != null) {
+              Get.find<ProfileController>()
+                  .setProfileAddress(addressModel!, fromShipping);
+              Get.find<LocationController>()
+                  .setProfileSelectedShippingAddressIndex(index);
+            }
             Get.back();
-          } else if (fromProfile! && fromBilling) {
-            Get.find<ProfileController>()
-                .setProfileAddress(addressModel!, false);
-            Get.find<LocationController>()
-                .setProfileSelectedBillingAddressIndex(index);
+          } else if (fromProfile != null) {
+            if (addressModel != null) {
+              Get.find<ProfileController>()
+                  .setProfileAddress(addressModel!, false);
+              Get.find<LocationController>()
+                  .setProfileSelectedBillingAddressIndex(index);
+            }
             Get.back();
           } else if (fromBilling) {
             Get.find<LocationController>().setBillingAddressIndex(index);
@@ -54,6 +58,32 @@ class AddressCardWidget extends StatelessWidget {
                 .setProfileSelectedShippingAddressIndex(index);
             Get.back();
           }
+
+          /// Replaced above code with null aware condition
+          // if (fromProfile! && fromShipping) {
+          //   Get.find<ProfileController>()
+          //       .setProfileAddress(addressModel!, fromShipping);
+          //   Get.find<LocationController>()
+          //       .setProfileSelectedShippingAddressIndex(index);
+          //   Get.back();
+          // } else if (fromProfile! && fromBilling) {
+          //   Get.find<ProfileController>()
+          //       .setProfileAddress(addressModel!, false);
+          //   Get.find<LocationController>()
+          //       .setProfileSelectedBillingAddressIndex(index);
+          //   Get.back();
+          // } else if (fromBilling) {
+          //   Get.find<LocationController>().setBillingAddressIndex(index);
+          //   Get.find<LocationController>()
+          //       .setProfileSelectedBillingAddressIndex(index);
+          //   Get.back();
+          // } else if (fromShipping) {
+          //   Get.find<LocationController>()
+          //       .setShippingAddressIndex(index, notify: true);
+          //   Get.find<LocationController>()
+          //       .setProfileSelectedShippingAddressIndex(index);
+          //   Get.back();
+          // }
         },
         child: Container(
           width: Dimensions.WEB_MAX_WIDTH,

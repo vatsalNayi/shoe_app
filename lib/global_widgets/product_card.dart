@@ -107,7 +107,6 @@ class ProductCard extends StatelessWidget {
                                     children: [
                                       SizedBox(
                                         width: Get.width * 0.24,
-                                        // 110,
                                         child: Text(
                                           productModel!.name ?? '',
                                           textAlign: TextAlign.left,
@@ -155,12 +154,7 @@ class ProductCard extends StatelessWidget {
                                       (productModel!.regularPrice !=
                                               productModel!.price)
                                           ? Text(
-                                              PriceConverter.convertPrice(
-                                                  productModel!.regularPrice!,
-                                                  taxStatus:
-                                                      productModel!.taxStatus,
-                                                  taxClass:
-                                                      productModel!.taxClass),
+                                              '₹${PriceConverter.convertPrice(productModel!.regularPrice!, taxStatus: productModel!.taxStatus, taxClass: productModel!.taxClass)}',
                                               style: poppinsBold.copyWith(
                                                   fontSize:
                                                       Dimensions.fontSizeSmall,
@@ -169,16 +163,13 @@ class ProductCard extends StatelessWidget {
                                                   decoration: TextDecoration
                                                       .lineThrough))
                                           : const SizedBox(),
+                                      SizedBox(width: 5.w),
                                       (productModel!.regularPrice !=
                                               productModel!.price)
                                           ? const SizedBox(width: 3)
                                           : const SizedBox(),
                                       Text(
-                                          PriceConverter.convertPrice(
-                                              productModel!.price!,
-                                              taxStatus:
-                                                  productModel!.taxStatus,
-                                              taxClass: productModel!.taxClass),
+                                          '₹${PriceConverter.convertPrice(productModel!.price!, taxStatus: productModel!.taxStatus, taxClass: productModel!.taxClass)}',
                                           style: poppinsBold.copyWith(
                                               fontSize:
                                                   Dimensions.fontSizeSmall,
@@ -224,7 +215,7 @@ class ProductCard extends StatelessWidget {
                     width: 36,
                     height: 36,
                     decoration: const ShapeDecoration(
-                      color: AppColors.lightoysterPink,
+                      color: AppColors.lightGreen,
                       shape: OvalBorder(
                         side: BorderSide(width: 3, color: AppColors.white),
                       ),

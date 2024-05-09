@@ -8,6 +8,7 @@ import 'package:shoes_app/controller/localization_controller.dart';
 import 'package:shoes_app/controller/theme_controller.dart';
 import 'package:shoes_app/core/utils/app_constants.dart';
 import 'package:shoes_app/data/repository/config_repo.dart';
+import 'package:shoes_app/data/repository/language_repo.dart';
 import 'package:shoes_app/data/services/api_client.dart';
 import 'package:shoes_app/data/services/instamojo_api_client.dart';
 import 'package:shoes_app/models/language_model.dart';
@@ -47,7 +48,7 @@ Future<Map<String, Map<String, String>>> init() async {
   /// Repository
   Get.lazyPut(
       () => ConfigRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-  // Get.lazyPut(() => LanguageRepo());
+  Get.lazyPut(() => LanguageRepo());
   Get.lazyPut(() => ProductRepo(apiClient: Get.find()));
   Get.lazyPut(
       () => CartRepo(apiClient: Get.find(), sharedPreferences: Get.find()));

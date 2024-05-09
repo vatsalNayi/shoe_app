@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shoes_app/module/cart/cart_controller.dart';
+import 'package:shoes_app/module/wishlist/controller/wish_controller.dart';
 import '../../core/values/colors.dart';
 import '../../core/values/strings.dart';
 import '../../global_widgets/confirm_dialog.dart';
@@ -55,7 +57,7 @@ class _MorePageState extends State<MorePage> {
               ),
               MoreTile(
                 onPress: () {
-                  // Get.toNamed(Routes.getSavedAddressRoute());
+                  Get.toNamed(Routes.getSavedAddressRoute());
                 },
                 title: 'My Address'.tr,
                 leadingIcon: ImagePath.location,
@@ -103,8 +105,8 @@ class _MorePageState extends State<MorePage> {
                                     Get.find<AuthController>().isLoggedIn();
                                     Get.find<search.SearchController>()
                                         .clearSearchAddress();
-                                    // Get.find<WishListController>()
-                                    //     .getWishList();
+                                    Get.find<WishListController>()
+                                        .getWishList();
                                     _isLoggedIn = false;
                                     Get.back();
                                     Get.toNamed(Routes.getSignInRoute());
@@ -133,10 +135,10 @@ class _MorePageState extends State<MorePage> {
                               Get.find<AuthController>().isLoggedIn();
                               Get.find<search.SearchController>()
                                   .clearSearchAddress();
-                              // Get.find<WishListController>().getWishList();
+                              Get.find<WishListController>().getWishList();
                               _isLoggedIn = false;
-                              // Get.find<CartController>()
-                              //     .getCartList(notify: true);
+                              Get.find<CartController>()
+                                  .getCartList(notify: true);
                               Get.back();
                               Get.toNamed(Routes.getSignInRoute());
                             }),

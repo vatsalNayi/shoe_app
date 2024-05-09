@@ -7,6 +7,7 @@ import 'package:shoes_app/models/category_model.dart';
 import 'package:shoes_app/models/order_model.dart';
 import 'package:shoes_app/models/product_model.dart';
 import 'package:shoes_app/module/address/add_address_screen.dart';
+import 'package:shoes_app/module/address/saved_address_screen.dart';
 import 'package:shoes_app/module/auth/forgot_password/forgot_pass_page.dart';
 import 'package:shoes_app/module/auth/forgot_password/verification_page.dart';
 import 'package:shoes_app/module/auth/login/login_page.dart';
@@ -16,10 +17,11 @@ import 'package:shoes_app/module/categories/categories_product_page.dart';
 import 'package:shoes_app/module/dashboard/dashboard_page.dart';
 import 'package:shoes_app/module/home/home_page.dart';
 import 'package:shoes_app/module/instamojo/instamojo_api_demo.dart';
+import 'package:shoes_app/module/more/profile/widgets/update_profile_screen.dart';
+import 'package:shoes_app/module/order/order_screen.dart';
 import 'package:shoes_app/module/product_details/product_details.dart';
 import 'package:shoes_app/module/splash/splash_page.dart';
 import 'package:shoes_app/module/welcome/welcome_page.dart';
-
 import '../module/more/profile/widgets/view_profile_screen.dart';
 part './routes.dart';
 
@@ -173,7 +175,7 @@ class AppPages {
     //   name: Routes.coupon,
     //   page: () => CouponScreen(formCart: Get.parameters['formCart'] == 'true'),
     // ),
-    // GetPage(name: Routes.savedAddress, page: () => const SavedAddressScreen()),
+    GetPage(name: Routes.savedAddress, page: () => const SavedAddressScreen()),
     GetPage(
         name: Routes.addAddress,
         page: () {
@@ -212,17 +214,17 @@ class AppPages {
     //               utf8.decode(base64Url.decode(Get.parameters['order']!)))),
     //         )),
     // GetPage(name: Routes.search, page: () => const SearchScreen()),
-    // GetPage(
-    //   name: Routes.orders,
-    //   page: () => OrderScreen(
-    //     formMenu: Get.parameters['fromMenu'] == null
-    //         ? false
-    //         : Get.parameters['fromMenu'] == 'true'
-    //             ? true
-    //             : false,
-    //   ),
-    // ),
-    // GetPage(name: Routes.updateProfile, page: () => UpdateProfileScreen()),
+    GetPage(
+      name: Routes.orders,
+      page: () => OrderScreen(
+        formMenu: Get.parameters['fromMenu'] == null
+            ? false
+            : Get.parameters['fromMenu'] == 'true'
+                ? true
+                : false,
+      ),
+    ),
+    GetPage(name: Routes.updateProfile, page: () => UpdateProfileScreen()),
     GetPage(name: Routes.profile, page: () => ViewProfileScreen()),
     // GetPage(name: Routes.settings, page: () => const SettingsScreen()),
     // GetPage(
