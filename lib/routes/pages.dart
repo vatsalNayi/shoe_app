@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoes_app/models/address_model.dart';
@@ -18,8 +19,11 @@ import 'package:shoes_app/module/dashboard/dashboard_page.dart';
 import 'package:shoes_app/module/home/home_page.dart';
 import 'package:shoes_app/module/instamojo/instamojo_api_demo.dart';
 import 'package:shoes_app/module/more/profile/widgets/update_profile_screen.dart';
+import 'package:shoes_app/module/notification/notification_screen.dart';
+import 'package:shoes_app/module/notification/notification_view_screen.dart';
 import 'package:shoes_app/module/order/order_screen.dart';
 import 'package:shoes_app/module/product_details/product_details.dart';
+import 'package:shoes_app/module/search/search_screen.dart';
 import 'package:shoes_app/module/splash/splash_page.dart';
 import 'package:shoes_app/module/welcome/welcome_page.dart';
 import '../module/more/profile/widgets/view_profile_screen.dart';
@@ -213,7 +217,7 @@ class AppPages {
     //           order: OrderModel.fromJson(jsonDecode(
     //               utf8.decode(base64Url.decode(Get.parameters['order']!)))),
     //         )),
-    // GetPage(name: Routes.search, page: () => const SearchScreen()),
+    GetPage(name: Routes.search, page: () => const SearchScreen()),
     GetPage(
       name: Routes.orders,
       page: () => OrderScreen(
@@ -251,5 +255,15 @@ class AppPages {
     //           number: Get.parameters['phone'],
     //           fromPasswordChange: Get.parameters['page'] == 'password-change',
     //         )),
+    GetPage(name: Routes.notification, page: () => NotificationScreen()),
+    GetPage(
+        name: Routes.notificationView,
+        page: () {
+          log('${Get.parameters['from']}');
+          debugPrint('route---------');
+          return NotificationViewScreen(
+              form: Get.parameters['from'],
+              fromNotification: Get.parameters['fromNotification'] == 'true');
+        }),
   ];
 }

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:shoes_app/core/values/strings.dart';
-import 'package:shoes_app/models/category_model.dart';
 import 'package:shoes_app/module/auth/controller/auth_controller.dart';
 import 'package:shoes_app/module/categories/controller/category_controller.dart';
 import 'package:shoes_app/module/home/products/controller/product_controller.dart';

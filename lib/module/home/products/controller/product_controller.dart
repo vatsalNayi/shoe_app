@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/utils/app_constants.dart';
@@ -174,8 +175,8 @@ class ProductController extends GetxController implements GetxService {
     if (cart != null) {
       _quantity = cart.quantity;
       List<String> _variationTypes = [];
-      if (cart.variation!.length != 0 &&
-          cart.variation!.length > 0 &&
+      if (cart.variation!.isNotEmpty &&
+          cart.variation!.isNotEmpty &&
           cart.variationText != null) {
         _variationTypes.addAll(cart.variationText!.split('-'));
       }
@@ -416,7 +417,7 @@ class ProductController extends GetxController implements GetxService {
 
   void getExistProductIndex(int? productId) {
     _productCartQty = 0;
-    if (Get.find<CartController>().cartList!.length != 0) {
+    if (Get.find<CartController>().cartList!.isNotEmpty) {
       for (int i = 0; i < Get.find<CartController>().cartList!.length; i++) {
         if (Get.find<CartController>().cartList![i]!.id == productId) {
           _existProductIndex = i;
@@ -562,10 +563,12 @@ class ProductController extends GetxController implements GetxService {
     }
 
     for (int i = 0; i < _productAttributes.length; i++) {
-      print(_productAttributes[i].toJson());
+      if (kDebugMode) {
+        print(_productAttributes[i].toJson());
+      }
     }
 
-    initData(_product, null, _product!.variation!.length > 0);
+    initData(_product, null, _product!.variation!.isNotEmpty);
     //setExistInCart(product, notify: false);
     if (_product!.relatedIds!.isNotEmpty) {
       getRelatedProducts(_product!.relatedIds!);
@@ -583,7 +586,7 @@ class ProductController extends GetxController implements GetxService {
     setCurrentProductImageDisplayIndex = 0;
     setSelectedAttributeForProduct = '';
     _productDetailsIdList.removeAt(_productDetailsIdList.length - 1);
-    if (_productDetailsIdList.length >= 1) {
+    if (_productDetailsIdList.isNotEmpty) {
       getProductDetails(
           ProductModel(
               id: _productDetailsIdList[_productDetailsIdList.length - 1]),
@@ -854,7 +857,7 @@ class ProductController extends GetxController implements GetxService {
   }
 
   String? getImageUrl(List<ImageModel> images) =>
-      images.length > 0 ? images[0].src : '';
+      images.isNotEmpty ? images[0].src : '';
 
   // getWished(ProductModel product) {
   //   Get.find<WishListController>().wishList!.forEach((element) {
@@ -959,12 +962,12 @@ class ProductController extends GetxController implements GetxService {
       showCustomSnackBar(response.statusText);
     }
 
-    if (_product!.variations!.length > 0) {
+    if (_product!.variations!.isNotEmpty) {
       await getProductVariations(product!);
     } else {
       _variations = [];
     }
-    initData(_product, null, _product!.variations!.length > 0);
+    initData(_product, null, _product!.variations!.isNotEmpty);
     setExistInCart(product!, notify: false);
     getRelatedProducts(_product!.relatedIds!);
   }
@@ -1024,7 +1027,7 @@ class ProductController extends GetxController implements GetxService {
     _priceList = [];
     _discountedPriceList = [];
 
-    if (product.variation!.length != 0) {
+    if (product.variation!.isNotEmpty) {
       product.variation!.forEach((variation) {
         if (variation.regularPrice != null &&
             variation.regularPrice.toString().trim().isNotEmpty) {
@@ -1050,13 +1053,13 @@ class ProductController extends GetxController implements GetxService {
       _priceList.sort((a, b) => a.compareTo(b));
       _discountedPriceList.sort((a, b) => a.compareTo(b));
       _startingPrice = _priceList[0];
-      if (_discountedPriceList.length > 0) {
+      if (_discountedPriceList.isNotEmpty) {
         _startingDiscountedPrice = _discountedPriceList[0];
       }
       if (_priceList[0] < _priceList[_priceList.length - 1]) {
         _endingPrice = _priceList[_priceList.length - 1];
       }
-      if (_discountedPriceList.length > 0 &&
+      if (_discountedPriceList.isNotEmpty &&
           _discountedPriceList[0] <
               _discountedPriceList[_discountedPriceList.length - 1]) {
         _endingDiscountedPrice =
@@ -1168,7 +1171,7 @@ class ProductController extends GetxController implements GetxService {
                           .cartList![_cartIndex!]!
                           .quantity!
                       : 0
-                  : 0)) as int?;
+                  : 0));
         }
       } else if (product.stockQuantity != null) {
         _stock = (product.stockQuantity! -
@@ -1183,7 +1186,7 @@ class ProductController extends GetxController implements GetxService {
                             .cartList![_cartIndex!]!
                             .quantity!
                         : 0
-                    : 0))) as int?;
+                    : 0)));
       } else {
         _stock = null;
       }

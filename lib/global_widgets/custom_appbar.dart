@@ -52,11 +52,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         trailingIcon != null
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: SvgIcon(
-                  imagePath: trailingIcon!,
-                  color: trailingColor,
-                  height: 15.0,
-                  width: 15.0,
+                child: GestureDetector(
+                  onTap: onTapTrailing,
+                  child: SvgIcon(
+                    imagePath: trailingIcon!,
+                    color: trailingColor,
+                    height: 15.0,
+                    width: 15.0,
+                  ),
                 ),
               )
             : const SizedBox(),

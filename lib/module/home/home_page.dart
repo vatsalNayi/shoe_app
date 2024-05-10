@@ -19,28 +19,38 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.put(HomeController());
+    Get.put(HomeController());
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Hi there!',
         leadingIcon: ImagePath.homeMenu,
         trailingIcon: ImagePath.notification,
+        onTapTrailing: () {
+          debugPrint('Notification pressed');
+          Get.toNamed(Routes.getNotificationRoute());
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: customDecorationForTextfield(
-                child: CustomTextfield(
-                  hintText: 'Search for products',
-                  hintStyle: GoogleFonts.poppins(
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  border: InputBorder.none,
-                  prefixIcon: const SvgIcon(
-                    imagePath: ImagePath.search,
+              child: GestureDetector(
+                onTap: () {
+                  Get.toNamed(Routes.getSearchRoute());
+                },
+                child: customDecorationForTextfield(
+                  child: CustomTextfield(
+                    isEnabled: false,
+                    hintText: 'Search for products',
+                    hintStyle: GoogleFonts.poppins(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    border: InputBorder.none,
+                    prefixIcon: const SvgIcon(
+                      imagePath: ImagePath.search,
+                    ),
                   ),
                 ),
               ),

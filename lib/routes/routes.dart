@@ -34,6 +34,8 @@ class Routes {
   static const String instaMojoWebPaymentScreen = '/instaMojoWebPaymentScreen';
   static const String verification = '/verification';
   static const String tempRounded = '/temp_rounded';
+  static const String notification = '/notification';
+  static const String notificationView = '/notification_view';
 
   static String getInitialRoute() => dashboardPage;
 
@@ -112,7 +114,7 @@ class Routes {
     return '$orderTracking?order=$_data';
   }
 
-  // static String getSearchRoute() => search;
+  static String getSearchRoute() => search;
 
   static String getInstaMojoWebPaymentScreen(String url) {
     return '$instaMojoWebPaymentScreen?url=$url';
@@ -130,4 +132,9 @@ class Routes {
   static String getResetPasswordRoute(
           String? phone, String token, String page) =>
       '$resetPassword?phone=$phone&token=$token&page=$page';
+
+  static String getNotificationRoute() => notification;
+  static String notificationViewRoute(String from,
+          {bool fromNotification = false}) =>
+      '$notificationView?from=$from&fromNotification=$fromNotification';
 }

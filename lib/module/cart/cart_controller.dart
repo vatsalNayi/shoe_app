@@ -31,7 +31,7 @@
 //   }
 // }
 
-// //
+///
 
 import 'dart:convert';
 import 'dart:developer';
@@ -40,7 +40,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shoes_app/module/checkout/models/shipping_method_model.dart';
-import 'package:shoes_app/module/coupon/controller/coupon_controller.dart';
 import 'package:shoes_app/module/order/controller/order_controller.dart';
 import '../../controller/config_controller.dart';
 import '../../global_widgets/show_snackbar.dart';
@@ -200,7 +199,7 @@ class CartController extends GetxController implements GetxService {
       _cartList!.add(_cart);
     }
 
-    if (userId != 0 && _guestCartList!.length != 0) {
+    if (userId != 0 && _guestCartList!.isNotEmpty) {
       addToCartFromGuest();
     }
     if (notify) {
@@ -388,8 +387,9 @@ class CartController extends GetxController implements GetxService {
   getDropdownStateList() {
     dropdownStateList = [];
     statelist!.forEach((element) {
-      if (_selectedCountry!.isoCode == element.countryCode)
+      if (_selectedCountry!.isoCode == element.countryCode) {
         dropdownStateList.add(element);
+      }
     });
   }
 

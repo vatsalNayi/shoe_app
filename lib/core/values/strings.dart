@@ -243,4 +243,7 @@ class ImagePath {
       '${BaseImagePath.imagePath}wished_item_1.png';
   static const String chooseAddress =
       '${BaseImagePath.imagePath}choose_address.png';
+  static const String offer = '${BaseImagePath.imagePath}offer.png';
+  static const String feed = '${BaseImagePath.imagePath}feed.png';
+  static const String activity = '${BaseImagePath.imagePath}activity.png';
 }

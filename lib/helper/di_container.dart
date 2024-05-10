@@ -22,6 +22,8 @@ import 'package:shoes_app/module/coupon/controller/coupon_controller.dart';
 import 'package:shoes_app/module/coupon/repository/coupon_repo.dart';
 import 'package:shoes_app/module/home/products/controller/product_controller.dart';
 import 'package:shoes_app/module/home/products/repository/product_repo.dart';
+import 'package:shoes_app/module/notification/controller/notification_controller.dart';
+import 'package:shoes_app/module/notification/repository/notification_repo.dart';
 import 'package:shoes_app/module/order/controller/order_controller.dart';
 import 'package:shoes_app/module/order/repository/order_repo.dart';
 import 'package:shoes_app/module/search/controller/search_controller.dart';
@@ -71,8 +73,8 @@ Future<Map<String, Map<String, String>>> init() async {
   // Get.lazyPut(() => BlogRepo(apiClient: Get.find()));
   Get.lazyPut(() => LocationRepo(sharedPreferences: Get.find()));
   // Get.lazyPut(() => BannerRepo(apiClient: Get.find()));
-  // Get.lazyPut(() =>
-  //     NotificationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
+  Get.lazyPut(() =>
+      NotificationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   // Get.lazyPut(() => HtmlRepository(apiClient: Get.find()), fenix: true);
 
   // Controller
@@ -99,7 +101,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => LocationController(
       locationRepo: Get.find(), sharedPreferences: Get.find()));
   // Get.lazyPut(() => BannerController(bannerRepo: Get.find()));
-  // Get.lazyPut(() => NotificationController(notificationRepo: Get.find()));
+  Get.lazyPut(() => NotificationController(notificationRepo: Get.find()));
   // Get.lazyPut(() => HtmlViewController(htmlRepository: Get.find()),
   //     fenix: true);
 
