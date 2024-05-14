@@ -190,10 +190,11 @@ class GridProducts extends StatelessWidget {
               GetBuilder<ProductController>(builder: (productController) {
                 return GestureDetector(
                   onTap: () {
-                    Get.find<CartController>().addToCart(
-                      productController.cartModel,
-                      productController.cartIndex,
-                    );
+                    debugPrint('icon pressed');
+                    // Get.find<CartController>().addToCart(
+                    //   productController.cartModel,
+                    //   productController.cartIndex,
+                    // );
                   },
                   child: Container(
                     width: 31.w,

@@ -8,10 +8,13 @@ import 'package:shoes_app/global_widgets/custom_appbar.dart';
 import 'package:shoes_app/global_widgets/custom_textfield.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
 import 'package:shoes_app/global_widgets/textfield_decoration.dart';
+import 'package:shoes_app/helper/product_type.dart';
 import 'package:shoes_app/module/home/home_controller.dart';
+import 'package:shoes_app/module/home/products/all_product_screen.dart';
 import 'package:shoes_app/module/home/products/controller/product_controller.dart';
 import 'package:shoes_app/module/home/widgets/grid_product.dart';
 import 'package:shoes_app/module/home/widgets/horizontal_product_list.dart';
+import 'package:shoes_app/module/home/widgets/popular_product_view.dart';
 import '../../routes/pages.dart';
 
 class HomePage extends StatelessWidget {
@@ -135,6 +138,8 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     height: 18.h,
                   ),
+                  const PopularProductView(isPopular: true),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -145,22 +150,34 @@ class HomePage extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            'View more',
-                            style: GoogleFonts.poppins(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => const AllProductScreen(
+                                productType: ProductType.LATEST_PRODUCT,
+                                // productType: isPopular
+                                //     ? ProductType.POPULAR_PRODUCT
+                                //     : newArrival
+                                //         ? ProductType.LATEST_PRODUCT
+                                //         : ProductType.REVIEWED_PRODUCT,
+                              ));
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              'View more',
+                              style: GoogleFonts.poppins(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          const SvgIcon(
-                            imagePath: ImagePath.doubleArrow,
-                          ),
-                        ],
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            const SvgIcon(
+                              imagePath: ImagePath.doubleArrow,
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),

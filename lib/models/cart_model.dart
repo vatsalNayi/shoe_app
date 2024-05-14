@@ -308,20 +308,47 @@ class CartModelAll {
 
   CartModelAll.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    if (json['cart_list'] != null) {
+    var cartListJson = json['cart_list'];
+    if (cartListJson != null) {
       cartList = <CartModel>[];
-      json['cart_list'].forEach((v) {
-        cartList!.add(CartModel.fromJson(v));
-      });
+      // Ensure that cartListJson is a List<dynamic>
+      if (cartListJson is List<dynamic>) {
+        cartListJson.forEach((v) {
+          // Ensure that each element of cartListJson is a Map<String, dynamic>
+          if (v is Map<String, dynamic>) {
+            cartList!.add(CartModel.fromJson(v));
+          }
+        });
+      }
     }
   }
+
+  // CartModelAll.fromJson(Map<String, dynamic> json) {
+  //   id = json['id'];
+  //   if (json['cart_list'] != null) {
+  //     cartList = <CartModel>[];
+  //     json['cart_list'].forEach((v) {
+  //       cartList!.add(CartModel.fromJson(v));
+  //     });
+  //   }
+  // }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    if (cartList != null) {
+    if (cartList != null && cartList!.isNotEmpty) {
+      // Check if cartList is not null before accessing its properties or methods
       data['cart_list'] = cartList!.map((v) => v!.toJson()).toList();
     }
     return data;
   }
+
+  // Map<String, dynamic> toJson() {
+  //   final Map<String, dynamic> data = <String, dynamic>{};
+  //   data['id'] = id;
+  //   if (cartList != null && cartList!.isNotEmpty) {
+  //     data['cart_list'] = cartList!.map((v) => v!.toJson()).toList();
+  //   }
+  //   return data;
+  // }
 }

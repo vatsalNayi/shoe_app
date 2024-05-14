@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoes_app/core/utils/styles.dart';
+import 'package:shoes_app/module/address/saved_address_screen.dart';
 import '../../../core/utils/dimensions.dart';
 import '../../../core/values/strings.dart';
 import '../../../models/address_model.dart';
@@ -32,13 +33,13 @@ class AddressCard extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         GetBuilder<CartController>(builder: (cartController) {
           return InkWell(
-            // onTap: () => cartController.isLoading
-            //     ? null
-            //     : Navigator.of(context).push(MaterialPageRoute(
-            //         builder: (BuildContext context) => SavedAddressScreen(
-            //             fromBilling: billingAddress,
-            //             fromShipping: !billingAddress,
-            //             fromProfile: false))),
+            onTap: () => cartController.isLoading
+                ? null
+                : Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => SavedAddressScreen(
+                        fromBilling: billingAddress,
+                        fromShipping: !billingAddress,
+                        fromProfile: false))),
             child: Row(
               children: [
                 Expanded(

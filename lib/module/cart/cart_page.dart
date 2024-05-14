@@ -16,6 +16,7 @@ import 'package:shoes_app/module/address/location_controller.dart';
 import 'package:shoes_app/module/cart/cart_controller.dart';
 import 'package:shoes_app/module/checkout/checkout_screen.dart';
 import 'package:shoes_app/module/checkout/models/shipping_method_model.dart';
+import 'package:shoes_app/module/checkout/widgets/address_card.dart';
 import 'package:shoes_app/module/coupon/controller/coupon_controller.dart';
 import 'package:shoes_app/module/more/profile/profile_controller.dart';
 import 'package:shoes_app/module/more/profile/widgets/profile_address_card.dart';
@@ -140,7 +141,6 @@ class CartPage extends StatelessWidget {
                                 children: [
                                   locationController.profileShippingSelected ==
                                           true
-                                      // true
                                       ? ProfileAddressCard(
                                           title: 'select_shipping_address'.tr,
                                           address: Get.find<ProfileController>()
@@ -149,6 +149,30 @@ class CartPage extends StatelessWidget {
                                           fromProfile: false,
                                         )
                                       : const SizedBox(),
+
+                                  locationController.profileShippingSelected ==
+                                          true
+                                      ? const SizedBox()
+                                      : GetBuilder<LocationController>(
+                                          builder: (addressController) {
+                                          return AddressCard(
+                                            title: 'select_shipping_address'.tr,
+                                            address: addressController
+                                                        .selectedShippingAddressIndex ==
+                                                    -1
+                                                ? null
+                                                : addressController
+                                                        .addressList!.isNotEmpty
+                                                    ? addressController
+                                                            .addressList![
+                                                        addressController
+                                                            .selectedShippingAddressIndex!]
+                                                    : null,
+                                            //address: null,
+                                            billingAddress: false,
+                                            fromProfile: false,
+                                          );
+                                        }),
                                   //
                                   Text(
                                     'Price Details',
