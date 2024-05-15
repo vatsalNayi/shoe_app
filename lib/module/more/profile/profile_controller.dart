@@ -95,6 +95,10 @@ class ProfileController extends GetxController implements GetxService {
   }
 
   void setStateIso() {
+    if (_stateList == null || _shipping == null) {
+      // Handle the case where either _stateList or _shipping is null
+      return;
+    }
     for (int i = 0; i < _stateList!.length; i++) {
       if (_stateList![i].name == _shipping!.state) {
         _shipping!.stateIso = _stateList![i].isoCode;
@@ -102,6 +106,16 @@ class ProfileController extends GetxController implements GetxService {
       }
     }
   }
+
+  /// REPLACED above code for null aware value
+  // void setStateIso() {
+  //   for (int i = 0; i < _stateList!.length; i++) {
+  //     if (_stateList![i].name == _shipping!.state) {
+  //       _shipping!.stateIso = _stateList![i].isoCode;
+  //       break;
+  //     }
+  //   }
+  // }
 
 /*
   void setabc() {

@@ -19,6 +19,7 @@ import 'package:shoes_app/module/dashboard/dashboard_page.dart';
 import 'package:shoes_app/module/home/home_page.dart';
 import 'package:shoes_app/module/instamojo/instamojo_api_demo.dart';
 import 'package:shoes_app/module/more/profile/widgets/update_profile_screen.dart';
+import 'package:shoes_app/module/more/settings/settings_screen.dart';
 import 'package:shoes_app/module/notification/notification_screen.dart';
 import 'package:shoes_app/module/notification/notification_view_screen.dart';
 import 'package:shoes_app/module/order/order_screen.dart';
@@ -230,7 +231,7 @@ class AppPages {
     ),
     GetPage(name: Routes.updateProfile, page: () => UpdateProfileScreen()),
     GetPage(name: Routes.profile, page: () => ViewProfileScreen()),
-    // GetPage(name: Routes.settings, page: () => const SettingsScreen()),
+    GetPage(name: Routes.settings, page: () => const SettingsScreen()),
     // GetPage(
     //     name: Routes.instaMojoWebPaymentScreen,
     //     page: () => InstamojoWebPayment(url: Get.parameters['url'] ?? '')),

@@ -80,7 +80,7 @@ class _MorePageState extends State<MorePage> {
                 title: 'Settings'.tr,
                 leadingIcon: ImagePath.settings,
                 onPress: () {
-                  // Get.toNamed(Routes.getSettingsRoute());
+                  Get.toNamed(Routes.getSettingsRoute());
                 },
               ),
               _isLoggedIn
