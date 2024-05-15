@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,16 +23,16 @@ class _SplashPageState extends State<SplashPage> {
 
   /// NOTE: Changed type of variable List<ConnectivityResult> from ConnectivityResult
   /// change back to ConnectivityResult (if not compatible)
-  late StreamSubscription<List<ConnectivityResult>> _onConnectivityChanged;
+  late StreamSubscription<ConnectivityResult> _onConnectivityChanged;
 
   @override
   void initState() {
     int count = 0;
     _onConnectivityChanged = Connectivity()
         .onConnectivityChanged
-        .listen((List<ConnectivityResult> result) {
+        .listen((ConnectivityResult result) {
       count += 1;
-      if (count > 2) {
+      if (count >= 2) {
         bool isNotConnected = result != ConnectivityResult.wifi &&
             result != ConnectivityResult.mobile;
 

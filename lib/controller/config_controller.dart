@@ -39,8 +39,8 @@ class ConfigController extends GetxController implements GetxService {
     bool _isSuccess = false;
     if (_response.statusCode == 200) {
       debugPrint('App_settings');
-      debugPrint(_response.body['app_settings']);
-      debugPrint(_response.body['app_settings'].runtimeType.toString());
+      // debugPrint(_response.body['app_settings']);
+      // debugPrint(_response.body['app_settings'].runtimeType.toString());
       //_generalSettings = [];
       _settings = SettingsModel.fromJson(_response.body);
       _response = await configRepo.getConfigData();
