@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -213,15 +214,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 SizedBox(
                                   height: 7.h,
                                 ),
-                                Text(
-                                  // 'Whether you\'re looking for running shoes, basketball sneakers, or casual footwear, Nike has a style to suit your needs. With iconic models like the Air Max, Air Jordan.......Read More',
-                                  convertHtmlText(
-                                      product.description.toString()),
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.black.withOpacity(0.72),
-                                  ),
+                                Html(
+                                  data: '${product.description}',
+                                  style: {
+                                    "p1": Style(
+                                      fontSize: FontSize(14.sp),
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.black.withOpacity(0.72),
+                                    ),
+                                  },
                                 ),
                                 SizedBox(
                                   height: 11.h,
@@ -236,7 +237,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         scrollDirection: Axis.horizontal,
                                         itemCount: 5,
                                         itemBuilder: (context, index) {
-                                          return SvgIcon(
+                                          return const SvgIcon(
                                               imagePath: ImagePath.ratings);
                                         },
                                       ),
@@ -280,7 +281,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     itemBuilder: (context, index) {
                                       return Container(
                                         width: 20.w,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: AppColors.red,
                                           shape: BoxShape.circle,
                                         ),

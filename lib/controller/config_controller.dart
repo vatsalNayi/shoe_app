@@ -171,6 +171,7 @@ class ConfigController extends GetxController implements GetxService {
   }
 
   //Account Settings
+
   bool enabledGuestCheckout() {
     return _settings!.accountSettings!.woocommerceEnableGuestCheckout == 'yes';
   }
