@@ -246,26 +246,59 @@ class ProductController extends GetxController implements GetxService {
       debugPrint(
           'LastVariation------------>${_variationAttributes[_variationAttributes.length - 1].toJson()}');
 
-      for (int i = 0; i < _variationIndex!.length - 1; i++) {
-        String _optionText = '';
-        if (_variationAttributes[i]
-            .options![_variationIndex![i]]
-            .contains(' ')) {
-          _optionText = _variationAttributes[i]
+      if (_variationIndex != null && _variationIndex!.isNotEmpty) {
+        for (int i = 0; i < _variationIndex!.length - 1; i++) {
+          if (i >= _variationAttributes.length ||
+              i >= _variationAttributes[i].options!.length) {
+            print(
+                'Invalid index: i = $i, _variationAttributes length = ${_variationAttributes.length}');
+            continue;
+          }
+
+          String _optionText = '';
+          if (_variationAttributes[i]
               .options![_variationIndex![i]]
-              .replaceAll(' ', '');
-        } else if (_variationAttributes[i]
-            .options![_variationIndex![i]]
-            .contains('-')) {
-          _optionText = _variationAttributes[i]
+              .contains(' ')) {
+            _optionText = _variationAttributes[i]
+                .options![_variationIndex![i]]
+                .replaceAll(' ', '');
+          } else if (_variationAttributes[i]
               .options![_variationIndex![i]]
-              .replaceAll('-', '');
-        } else {
-          _optionText = _variationAttributes[i].options![_variationIndex![i]];
+              .contains('-')) {
+            _optionText = _variationAttributes[i]
+                .options![_variationIndex![i]]
+                .replaceAll('-', '');
+          } else {
+            _optionText = _variationAttributes[i].options![_variationIndex![i]];
+          }
+          filterOptionVText(_optionText.toLowerCase());
+          //filterOptionVText(variationOptionTrimmedText(_variationAttributes[i].options[_variationIndex[i]]));
         }
-        filterOptionVText(_optionText.toLowerCase());
-        //filterOptionVText(variationOptionTrimmedText(_variationAttributes[i].options[_variationIndex[i]]));
+      } else {
+        print('Invalid _variationIndex: it is either null or empty.');
       }
+
+      // Replaced above because for Range error
+      // for (int i = 0; i < _variationIndex!.length - 1; i++) {
+      //   String _optionText = '';
+      //   if (_variationAttributes[i]
+      //       .options![_variationIndex![i]]
+      //       .contains(' ')) {
+      //     _optionText = _variationAttributes[i]
+      //         .options![_variationIndex![i]]
+      //         .replaceAll(' ', '');
+      //   } else if (_variationAttributes[i]
+      //       .options![_variationIndex![i]]
+      //       .contains('-')) {
+      //     _optionText = _variationAttributes[i]
+      //         .options![_variationIndex![i]]
+      //         .replaceAll('-', '');
+      //   } else {
+      //     _optionText = _variationAttributes[i].options![_variationIndex![i]];
+      //   }
+      //   filterOptionVText(_optionText.toLowerCase());
+      //   //filterOptionVText(variationOptionTrimmedText(_variationAttributes[i].options[_variationIndex[i]]));
+      // }
 
       debugPrint('----------->${_variationIndex.toString()}');
       for (int i = 0; i < product!.variation!.length; i++) {
@@ -488,7 +521,7 @@ class ProductController extends GetxController implements GetxService {
       } else {
         _product = null;
         _product = ProductModel.fromJson(response.body);
-        log('getProductDetails log: ${_product?.name}');
+        // log('getProductDetails log: ${_product?.attributes?[1].options}');
       }
     } else {
       showCustomSnackBar(response.statusText);

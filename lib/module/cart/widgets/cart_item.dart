@@ -120,7 +120,8 @@ class CartItem extends StatelessWidget {
               GetBuilder<CartController>(
                 builder: (_) {
                   return Text(
-                    '${controller.itemQty}',
+                    // '${controller.itemQty}',
+                    '${cartData?.quantity}',
                     style: GoogleFonts.poppins(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w500,

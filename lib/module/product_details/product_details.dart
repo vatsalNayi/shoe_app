@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shoes_app/core/utils/dimensions.dart';
 import 'package:shoes_app/core/utils/helper.dart';
 import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/core/values/strings.dart';
@@ -228,32 +230,110 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   height: 11.h,
                                 ),
                                 Row(
-                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    SizedBox(
-                                      height: 15.h,
-                                      child: ListView.builder(
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: 5,
-                                        itemBuilder: (context, index) {
-                                          return const SvgIcon(
-                                              imagePath: ImagePath.ratings);
-                                        },
-                                      ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        const SvgIcon(
+                                          imagePath: ImagePath.yellowStarSvg,
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                            double.parse(productController
+                                                    .product!.averageRating
+                                                    .toString())
+                                                .toStringAsFixed(1),
+                                            style: GoogleFonts.poppins(
+                                              fontWeight: FontWeight.w400,
+                                            ).copyWith(
+                                              color:
+                                                  Theme.of(context).hintColor,
+                                              fontSize:
+                                                  Dimensions.fontSizeLarge,
+                                            )),
+                                        const SizedBox(
+                                            width: Dimensions
+                                                .PADDING_SIZE_DEFAULT),
+                                        Text(
+                                          '${productController.product!.reviewCount.toString()} ${'reviews'.tr}',
+                                          style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                          ).copyWith(
+                                            color: Theme.of(context).hintColor,
+                                            fontSize: Dimensions.fontSizeLarge,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      width: 9.w,
-                                    ),
-                                    Text(
-                                      '(Reviews)',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.toNamed(Routes.getWriteReviewRoute(
+                                            productController.product!.id));
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(Dimensions
+                                            .PADDING_SIZE_EXTRA_SMALL),
+                                        decoration: BoxDecoration(
+                                          color: Get.isDarkMode
+                                              ? AppColors.lightRose
+                                              : Colors.transparent,
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.PADDING_SIZE_DEFAULT),
+                                          border: Border.all(
+                                            color: Get.isDarkMode
+                                                ? Theme.of(context).primaryColor
+                                                : AppColors.classicRose,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'give_review'.tr,
+                                          style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                          ).copyWith(
+                                              fontSize:
+                                                  Dimensions.fontSizeExtraSmall,
+                                              color: Colors.black),
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
+                                // Review previous design
+                                // Row(
+                                //   mainAxisSize: MainAxisSize.min,
+                                //   children: [
+                                //     SizedBox(
+                                //       height: 15.h,
+                                //       child: ListView.builder(
+                                //         shrinkWrap: true,
+                                //         scrollDirection: Axis.horizontal,
+                                //         itemCount: 5,
+                                //         itemBuilder: (context, index) {
+                                //           return const SvgIcon(
+                                //               imagePath: ImagePath.ratings);
+                                //         },
+                                //       ),
+                                //     ),
+                                //     SizedBox(
+                                //       width: 9.w,
+                                //     ),
+                                //     Text(
+                                //       '(Reviews)',
+                                //       style: GoogleFonts.poppins(
+                                //         fontSize: 14.sp,
+                                //         fontWeight: FontWeight.w500,
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),
                                 SizedBox(
                                   height: 11.h,
                                 ),
@@ -302,38 +382,158 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 SizedBox(
                                   height: 7.h,
                                 ),
-                                SizedBox(
-                                  height: 35.h,
-                                  child: ListView.separated(
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: 5,
-                                    separatorBuilder: (context, index) {
-                                      return SizedBox(
-                                        width: 8.w,
-                                      );
-                                    },
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        width: 35.w,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.bgGrey,
-                                          borderRadius:
-                                              BorderRadius.circular(10.r),
+                                productController.variationAttributes.isNotEmpty
+                                    ? Wrap(
+                                        direction: Axis.horizontal,
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.start,
+                                        children: List.generate(
+                                          productController
+                                              .variationAttributes.length,
+                                          (index) {
+                                            Attributes data = productController
+                                                .variationAttributes
+                                                .elementAt(index);
+                                            debugPrint(
+                                                'ATTRIBUTES is: ${productController.variationAttributes[index].name}');
+                                            return Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                SizedBox(height: 5.h),
+                                                data.options!.isNotEmpty
+                                                    ? Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            data.name != null
+                                                                ? '${'please_select_a'.tr} ${data.name!.capitalizeFirst}'
+                                                                : '',
+                                                            style: GoogleFonts
+                                                                .poppins(
+                                                                    fontSize:
+                                                                        15,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    color: Colors
+                                                                        .black),
+                                                          ),
+                                                          SizedBox(
+                                                              height: 10.h),
+                                                          data.options !=
+                                                                      null &&
+                                                                  data.options!
+                                                                      .isNotEmpty
+                                                              ? Wrap(
+                                                                  direction: Axis
+                                                                      .horizontal,
+                                                                  children: List
+                                                                      .generate(
+                                                                    data.options!
+                                                                        .length,
+                                                                    (i) {
+                                                                      String option = data
+                                                                          .options!
+                                                                          .elementAt(
+                                                                              i);
+                                                                      return GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          productController.setCartVariationIndex(
+                                                                              index,
+                                                                              i,
+                                                                              productController.product!);
+                                                                        },
+                                                                        child:
+                                                                            AnimatedContainer(
+                                                                          duration:
+                                                                              200.ms,
+                                                                          margin: EdgeInsets.only(
+                                                                              right: 10.w,
+                                                                              bottom: 10.h),
+                                                                          padding:
+                                                                              EdgeInsets.symmetric(
+                                                                            vertical:
+                                                                                10.h,
+                                                                            horizontal:
+                                                                                20.w,
+                                                                          ),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(50.r),
+                                                                            border:
+                                                                                Border.all(color: productController.variationIndex![index] == i ? const Color.fromARGB(255, 217, 159, 178) : AppColors.lightRose),
+                                                                          ),
+                                                                          child:
+                                                                              Text(
+                                                                            option,
+                                                                            style:
+                                                                                GoogleFonts.poppins(
+                                                                              fontSize: 13,
+                                                                              fontWeight: FontWeight.w500,
+                                                                              color: productController.variationIndex![index] == i ? const Color.fromARGB(255, 217, 159, 178) : AppColors.brightGrey,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ),
+                                                                )
+                                                              : const SizedBox(),
+                                                        ],
+                                                      )
+                                                    : const SizedBox(),
+                                              ],
+                                            );
+                                          },
                                         ),
-                                        child: Center(
-                                          child: Text(
-                                            '${index + 6}',
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
+                                      )
+                                    : const SizedBox(),
+
+                                ///
+                                // Product Size design
+                                // SizedBox(
+                                //   height: 35.h,
+                                //   child: ListView.separated(
+                                //     shrinkWrap: true,
+                                //     scrollDirection: Axis.horizontal,
+                                //     itemCount: 5,
+                                //     separatorBuilder: (context, index) {
+                                //       return SizedBox(
+                                //         width: 8.w,
+                                //       );
+                                //     },
+                                //     itemBuilder: (context, index) {
+                                //       return Container(
+                                //         width: 35.w,
+                                //         decoration: BoxDecoration(
+                                //           color: AppColors.bgGrey,
+                                //           borderRadius:
+                                //               BorderRadius.circular(10.r),
+                                //         ),
+                                //         child: Center(
+                                //           child: Text(
+                                //             '${index + 6}',
+                                //             style: GoogleFonts.poppins(
+                                //               fontSize: 13.sp,
+                                //               fontWeight: FontWeight.w400,
+                                //             ),
+                                //           ),
+                                //         ),
+                                //       );
+                                //     },
+                                //   ),
+                                // ),
                                 SizedBox(
                                   height: 24.h,
                                 ),

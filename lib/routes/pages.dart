@@ -24,6 +24,7 @@ import 'package:shoes_app/module/notification/notification_screen.dart';
 import 'package:shoes_app/module/notification/notification_view_screen.dart';
 import 'package:shoes_app/module/order/order_screen.dart';
 import 'package:shoes_app/module/product_details/product_details.dart';
+import 'package:shoes_app/module/review/write_review_screen.dart';
 import 'package:shoes_app/module/search/search_screen.dart';
 import 'package:shoes_app/module/splash/splash_page.dart';
 import 'package:shoes_app/module/welcome/welcome_page.dart';
@@ -151,14 +152,14 @@ class AppPages {
     //   transition: Transition.rightToLeftWithFade,
     //   transitionDuration: const Duration(milliseconds: 500),
     // ),
-    // GetPage(
-    //     name: Routes.writeReview,
-    //     page: () {
-    //       return WriteReviewScreen(
-    //         // lineItems: Get.parameters['item'] != 'null' ? ProductModel.fromJson(jsonDecode(utf8.decode(base64Url.decode( Get.parameters['item'] )))) : null,
-    //         productId: int.parse(Get.parameters['product_id']!),
-    //       );
-    //     }),
+    GetPage(
+        name: Routes.writeReview,
+        page: () {
+          return WriteReviewScreen(
+            // lineItems: Get.parameters['item'] != 'null' ? ProductModel.fromJson(jsonDecode(utf8.decode(base64Url.decode( Get.parameters['item'] )))) : null,
+            productId: int.parse(Get.parameters['product_id']!),
+          );
+        }),
     // GetPage(
     //     name: Routes.cart,
     //     page: () {

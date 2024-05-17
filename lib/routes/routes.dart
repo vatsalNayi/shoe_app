@@ -76,13 +76,13 @@ class Routes {
     return '$cart?cartModel=$_cartModel&fromOrder=${fromOrder.toString()}';
   }
 
-  // static String getWriteReviewRoute(int? productId) {
-  //   // String _item;
-  //   // if(item != null) {
-  //   //   _item = base64Encode(utf8.encode(jsonEncode(item.toJson())));
-  //   // }
-  //   return '$writeReview?product_id=$productId';
-  // }
+  static String getWriteReviewRoute(int? productId) {
+    // String _item;
+    // if(item != null) {
+    //   _item = base64Encode(utf8.encode(jsonEncode(item.toJson())));
+    // }
+    return '$writeReview?product_id=$productId';
+  }
 
   // static String getCouponRoute(bool formCart) =>
   //     '$coupon?formCart=${formCart.toString()}';
