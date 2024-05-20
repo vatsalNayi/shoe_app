@@ -88,8 +88,9 @@ class ProductTitleView extends StatelessWidget {
           : 0;
       _startingDiscountedPrice =
           product!.price != '' ? double.parse(product!.price!) : 0;
-      _discountInPercentage =
-          (100 - (_startingDiscountedPrice / _startingPrice) * 100).round();
+      // _discountInPercentage =
+      //     (100 - (_startingDiscountedPrice / _startingPrice) * 100).round();
+
       // log('Had Discount: $_hasDiscount');
       // log('Starting Price: $_startingPrice');
       // log('Starting Discounted Price: $_startingDiscountedPrice');

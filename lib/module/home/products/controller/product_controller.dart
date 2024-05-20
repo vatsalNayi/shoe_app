@@ -991,6 +991,7 @@ class ProductController extends GetxController implements GetxService {
     Response response = await productRepo.getSlugProductDetails(_productSlug!);
     if (response.statusCode == 200) {
       _product = ProductModel.fromJson(response.body[0]);
+      log('getSlugProductDetails: ${_product?.salePrice}');
     } else {
       showCustomSnackBar(response.statusText);
     }

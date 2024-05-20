@@ -19,6 +19,7 @@ import 'package:shoes_app/module/auth/controller/auth_controller.dart';
 import 'package:shoes_app/module/cart/cart_controller.dart';
 import 'package:shoes_app/module/home/home_controller.dart';
 import 'package:shoes_app/module/home/products/controller/product_controller.dart';
+import 'package:shoes_app/module/home/products/product_price_view.dart';
 import 'package:shoes_app/module/more/profile/profile_controller.dart';
 import 'package:shoes_app/routes/pages.dart';
 import 'widgets/pageview_widget.dart';
@@ -163,15 +164,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 SizedBox(
                                   height: 39.h,
                                 ),
-                                Text(
-                                  // 'Men’s shoes',
-                                  // widget.product?.name.toString() ?? '',
-                                  product!.name ?? '',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 17.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
+                                // Text(
+                                //   // 'Men’s shoes',
+                                //   // widget.product?.name.toString() ?? '',
+                                //   product!.name ?? '',
+                                //   style: GoogleFonts.poppins(
+                                //     fontSize: 17.sp,
+                                //     fontWeight: FontWeight.w400,
+                                //   ),
+                                // ),
                                 SizedBox(
                                   height: 1.h,
                                 ),
@@ -180,39 +181,43 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Nike Epic React (static)',
+                                      product!.name ?? '',
                                       style: GoogleFonts.poppins(
                                         fontSize: 20.sp,
                                         fontWeight: FontWeight.w600,
                                         color: AppColors.lightGreen,
                                       ),
                                     ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          // '\$168',
-                                          '₹${product.salePrice}',
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 20.sp,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Text(
-                                          // '\$168',
-                                          '₹${product.regularPrice}',
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 20.sp,
-                                            fontWeight: FontWeight.w600,
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+
+                                    // Column(
+                                    //   crossAxisAlignment:
+                                    //       CrossAxisAlignment.end,
+                                    //   children: [
+                                    //     Text(
+                                    //       // '\$168',
+                                    //       '₹${product.salePrice}',
+                                    //       // '₹${product.variationProducts?[0].price}',
+                                    //       style: GoogleFonts.poppins(
+                                    //         fontSize: 20.sp,
+                                    //         fontWeight: FontWeight.w600,
+                                    //       ),
+                                    //     ),
+                                    //     Text(
+                                    //       // '\$168',
+                                    //       '₹${product.regularPrice}',
+                                    //       style: GoogleFonts.poppins(
+                                    //         fontSize: 20.sp,
+                                    //         fontWeight: FontWeight.w600,
+                                    //         decoration:
+                                    //             TextDecoration.lineThrough,
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
                                   ],
                                 ),
+                                ProductTitleView(
+                                    product: productController.product),
                                 SizedBox(
                                   height: 7.h,
                                 ),
@@ -344,31 +349,31 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                SizedBox(
-                                  height: 15.h,
-                                  child: ListView.separated(
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: 4,
-                                    separatorBuilder: (context, index) {
-                                      return SizedBox(
-                                        width: 8.w,
-                                      );
-                                    },
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        width: 20.w,
-                                        decoration: const BoxDecoration(
-                                          color: AppColors.red,
-                                          shape: BoxShape.circle,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
+                                // SizedBox(
+                                //   height: 5.h,
+                                // ),
+                                // SizedBox(
+                                //   height: 15.h,
+                                //   child: ListView.separated(
+                                //     shrinkWrap: true,
+                                //     scrollDirection: Axis.horizontal,
+                                //     itemCount: 4,
+                                //     separatorBuilder: (context, index) {
+                                //       return SizedBox(
+                                //         width: 8.w,
+                                //       );
+                                //     },
+                                //     itemBuilder: (context, index) {
+                                //       return Container(
+                                //         width: 20.w,
+                                //         decoration: const BoxDecoration(
+                                //           color: AppColors.red,
+                                //           shape: BoxShape.circle,
+                                //         ),
+                                //       );
+                                //     },
+                                //   ),
+                                // ),
                                 SizedBox(
                                   height: 11.h,
                                 ),
@@ -395,7 +400,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 .variationAttributes
                                                 .elementAt(index);
                                             debugPrint(
-                                                'ATTRIBUTES is: ${productController.variationAttributes[index].name}');
+                                                'ATTRIBUTES is: ${productController.variationAttributes[index].options}');
                                             return Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,

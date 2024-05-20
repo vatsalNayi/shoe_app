@@ -90,20 +90,20 @@ class PageViewWidget extends StatelessWidget {
                                 ),
                               );
                             }),
-                            SizedBox(
-                              height: 11.h,
-                            ),
-                            Container(
-                              width: 28.w,
-                              height: 28.h,
-                              decoration: const BoxDecoration(
-                                color: AppColors.white,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const SvgIcon(
-                                imagePath: ImagePath.share,
-                              ),
-                            ),
+                            // SizedBox(
+                            //   height: 11.h,
+                            // ),
+                            // Container(
+                            //   width: 28.w,
+                            //   height: 28.h,
+                            //   decoration: const BoxDecoration(
+                            //     color: AppColors.white,
+                            //     shape: BoxShape.circle,
+                            //   ),
+                            //   child: const SvgIcon(
+                            //     imagePath: ImagePath.share,
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
