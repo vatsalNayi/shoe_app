@@ -58,38 +58,38 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20.h,
-            ),
+            // SizedBox(
+            //   height: 20.h,
+            // ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Footwears For Men',
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  const HorizontalProductList(
-                      image:
-                          'https://plus.unsplash.com/premium_photo-1713163890188-6807aa2641de?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMjJ8fHxlbnwwfHx8fHw%3D'),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  const Text(
-                    'Shop by color',
-                  ),
-                  SizedBox(
-                    height: 17.h,
-                  ),
-                  const HorizontalProductList(
-                      image:
-                          'https://images.unsplash.com/photo-1712971578942-8d44b2d77143?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNDN8fHxlbnwwfHx8fHw%3D'),
-                  SizedBox(
-                    height: 19.h,
-                  ),
+                  // const Text(
+                  //   'Footwears For Men',
+                  // ),
+                  // SizedBox(
+                  //   height: 20.h,
+                  // ),
+                  // const HorizontalProductList(
+                  //     image:
+                  //         'https://plus.unsplash.com/premium_photo-1713163890188-6807aa2641de?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMjJ8fHxlbnwwfHx8fHw%3D'),
+                  // SizedBox(
+                  //   height: 20.h,
+                  // ),
+                  // const Text(
+                  //   'Shop by color',
+                  // ),
+                  // SizedBox(
+                  //   height: 17.h,
+                  // ),
+                  // const HorizontalProductList(
+                  //     image:
+                  //         'https://images.unsplash.com/photo-1712971578942-8d44b2d77143?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNDN8fHxlbnwwfHx8fHw%3D'),
+                  // SizedBox(
+                  //   height: 19.h,
+                  // ),
                   // Text(
                   //   'Popular Brand',
                   //   style: GoogleFonts.poppins(

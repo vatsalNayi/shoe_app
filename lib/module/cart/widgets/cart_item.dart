@@ -21,7 +21,7 @@ class CartItem extends StatelessWidget {
 
   String formatVariationText(String? variationText) {
     if (variationText == null || !variationText.contains('-')) {
-      return 'Invalid variation text';
+      return '';
     }
 
     // Split the variationText on '-'
