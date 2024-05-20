@@ -19,6 +19,21 @@ class CartItem extends StatelessWidget {
     required this.cartIndex,
   });
 
+  String formatVariationText(String? variationText) {
+    if (variationText == null || !variationText.contains('-')) {
+      return 'Invalid variation text';
+    }
+
+    // Split the variationText on '-'
+    List<String> parts = variationText.split('-');
+
+    // Assuming the format is always color-size
+    String color = parts[0].toUpperCase();
+    String size = parts[1];
+
+    return 'Color: $color & Size: $size';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -37,7 +52,9 @@ class CartItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Size: 5 (static)',
+                // 'Size: ${cartData!.variationText?.toUpperCase()}',
+                formatVariationText(
+                    '${cartData!.variationText?.toUpperCase()}'),
                 style: GoogleFonts.poppins(
                   fontSize: 15.sp,
                   fontWeight: FontWeight.w400,
@@ -68,39 +85,30 @@ class CartItem extends StatelessWidget {
               ),
             ],
           ),
-          leading: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              GetBuilder<CartController>(
-                builder: (_) {
-                  return Checkbox(
-                    activeColor: AppColors.lightGreen,
-                    value: controller.isSelectedItem,
-                    onChanged: controller.toggleSelectItem,
-                  );
-                },
-              ),
-              Container(
-                width: 70.w,
-                height: 70.w,
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: Image.network(
-                  // ImagePath.shoeCart1,
-                  '${cartData?.images?.first.src}',
-                  width: 52.w,
-                  height: 32.h,
-                ),
-              ),
-            ],
+          leading: Container(
+            width: 70.w,
+            height: 70.w,
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(10.r),
+            ),
+            child: Image.network(
+              // ImagePath.shoeCart1,
+              '${cartData?.images?.first.src}',
+              width: 52.w,
+              height: 32.h,
+            ),
           ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               GestureDetector(
-                onTap: controller.decrItemQty,
+                onTap: () {
+                  if (cartData!.quantity != null && cartData!.quantity! > 1) {
+                    cartData!.quantity = (cartData!.quantity! - 1);
+                    controller.update();
+                  }
+                },
                 child: Container(
                   width: 20.w,
                   height: 20.h,
@@ -133,7 +141,12 @@ class CartItem extends StatelessWidget {
                 width: 5.w,
               ),
               GestureDetector(
-                onTap: controller.incrItemQty,
+                onTap: () {
+                  if (cartData!.quantity != null) {
+                    cartData!.quantity = (cartData!.quantity! + 1);
+                    controller.update();
+                  }
+                },
                 child: Container(
                   width: 20.w,
                   height: 20.h,

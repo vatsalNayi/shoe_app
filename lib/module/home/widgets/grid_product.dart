@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +6,6 @@ import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
 import 'package:shoes_app/models/product_model.dart';
-import 'package:shoes_app/module/cart/cart_controller.dart';
 import 'package:shoes_app/module/home/products/controller/product_controller.dart';
 
 class GridProducts extends StatelessWidget {
@@ -94,7 +92,7 @@ class GridProducts extends StatelessWidget {
             children: [
               Text(
                 // '\$130',
-                '₹${productList.salePrice}',
+                '${productList.salePrice}',
                 style: GoogleFonts.poppins(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,

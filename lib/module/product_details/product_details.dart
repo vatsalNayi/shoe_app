@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoes_app/core/utils/dimensions.dart';
-import 'package:shoes_app/core/utils/helper.dart';
 import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/custom_appbar.dart';
@@ -231,9 +230,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     ),
                                   },
                                 ),
-                                SizedBox(
-                                  height: 11.h,
-                                ),
+                                // SizedBox(
+                                //   height: 11.h,
+                                // ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -339,16 +338,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 //     ),
                                 //   ],
                                 // ),
-                                SizedBox(
-                                  height: 11.h,
-                                ),
-                                Text(
-                                  'Color',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+
                                 // SizedBox(
                                 //   height: 5.h,
                                 // ),
@@ -374,19 +364,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 //     },
                                 //   ),
                                 // ),
-                                SizedBox(
-                                  height: 11.h,
-                                ),
-                                Text(
-                                  'Size',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 7.h,
-                                ),
+
                                 productController.variationAttributes.isNotEmpty
                                     ? Wrap(
                                         direction: Axis.horizontal,

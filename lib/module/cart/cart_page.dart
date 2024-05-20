@@ -204,7 +204,9 @@ class CartPage extends StatelessWidget {
                                       ),
                                       Text(
                                         // '\$137.45',
-                                        '₹${PriceConverter.convertPrice(cartController.productPrice.toString())}',
+                                        PriceConverter.convertPrice(
+                                            cartController.productPrice
+                                                .toString()),
                                         style: GoogleFonts.poppins(
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.w500,
@@ -281,7 +283,8 @@ class CartPage extends StatelessWidget {
                                       ),
                                       Text(
                                         // '\$123.70',
-                                        '₹${PriceConverter.convertPrice(_subTotal.toString())}',
+                                        PriceConverter.convertPrice(
+                                            _subTotal.toString()),
                                         style: GoogleFonts.poppins(
                                           fontSize: 18.sp,
                                           fontWeight: FontWeight.w500,

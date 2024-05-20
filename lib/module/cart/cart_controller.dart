@@ -178,19 +178,11 @@ class CartController extends GetxController implements GetxService {
           break;
         }
       }
-      if (_guestCartList != null && _tempCartList != null) {
-        for (int i = 0; i < _guestCartList!.length; i++) {
-          if (!_tempCartList!.contains(_guestCartList![i])) {
-            _tempCartList!.add(_guestCartList![i]);
-          }
+      for (int i = 0; i < _guestCartList!.length; i++) {
+        if (!_tempCartList!.contains(_guestCartList![i])) {
+          _tempCartList.add(_guestCartList![i]);
         }
       }
-
-      // for (int i = 0; i < _guestCartList!.length; i++) {
-      //   if (!_tempCartList!.contains(_guestCartList![i])) {
-      //     _tempCartList.add(_guestCartList![i]);
-      //   }
-      // }
     }
 
     _cartList = [];
@@ -203,11 +195,11 @@ class CartController extends GetxController implements GetxService {
               .firstWhere((tax) => tax.taxClass == _cart.product!.taxClass);
         }
       } catch (e) {}
-      debugPrint(_cart.variationText);
+      print(_cart.variationText);
       _cartList!.add(_cart);
     }
 
-    if (userId != 0 && _guestCartList != null && _guestCartList!.isNotEmpty) {
+    if (userId != 0 && _guestCartList!.length != 0) {
       addToCartFromGuest();
     }
     if (notify) {

@@ -58,10 +58,10 @@ class WishedItems extends StatelessWidget {
                                     top: Radius.circular(10.r)),
                                 child: CustomImage(
                                   image: productData.images!.first.src,
-                                  height: 240,
+                                  height: 240.h,
                                   width: double.maxFinite,
-                                  // fit: BoxFit.cover,
-                                  fit: BoxFit.contain,
+                                  fit: BoxFit.cover,
+                                  // fit: BoxFit.contain,
                                 ),
                               ),
                               Padding(
@@ -85,7 +85,7 @@ class WishedItems extends StatelessWidget {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 5.h,
+                                      height: 2.h,
                                     ),
                                     // WishProductPriceWidget(
                                     //   // product: productData,

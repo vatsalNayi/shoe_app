@@ -170,7 +170,11 @@ class ProductCard extends StatelessWidget {
                                           ? const SizedBox(width: 3)
                                           : const SizedBox(),
                                       Text(
-                                          '₹${PriceConverter.convertPrice(productModel!.price!, taxStatus: productModel!.taxStatus, taxClass: productModel!.taxClass)}',
+                                          PriceConverter.convertPrice(
+                                              productModel!.price!,
+                                              taxStatus:
+                                                  productModel!.taxStatus,
+                                              taxClass: productModel!.taxClass),
                                           style: poppinsBold.copyWith(
                                               fontSize:
                                                   Dimensions.fontSizeSmall,
