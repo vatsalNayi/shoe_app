@@ -52,9 +52,9 @@ class CartItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                // 'Size: ${cartData!.variationText?.toUpperCase()}',
-                formatVariationText(
-                    '${cartData!.variationText?.toUpperCase()}'),
+                'Size: ${cartData!.variationText?.toUpperCase()}',
+                // formatVariationText(
+                //     '${cartData!.variationText?.toUpperCase()}'),
                 style: GoogleFonts.poppins(
                   fontSize: 15.sp,
                   fontWeight: FontWeight.w400,

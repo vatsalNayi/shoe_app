@@ -15,6 +15,7 @@ import 'package:shoes_app/module/auth/login/login_page.dart';
 import 'package:shoes_app/module/auth/signup/sign_up_page.dart';
 import 'package:shoes_app/module/cart/cart_page.dart';
 import 'package:shoes_app/module/categories/categories_product_page.dart';
+import 'package:shoes_app/module/checkout/order_successful_screen.dart';
 import 'package:shoes_app/module/dashboard/dashboard_page.dart';
 import 'package:shoes_app/module/home/home_page.dart';
 import 'package:shoes_app/module/instamojo/instamojo_api_demo.dart';
@@ -22,7 +23,9 @@ import 'package:shoes_app/module/more/profile/widgets/update_profile_screen.dart
 import 'package:shoes_app/module/more/settings/settings_screen.dart';
 import 'package:shoes_app/module/notification/notification_screen.dart';
 import 'package:shoes_app/module/notification/notification_view_screen.dart';
+import 'package:shoes_app/module/order/order_details_screen.dart';
 import 'package:shoes_app/module/order/order_screen.dart';
+import 'package:shoes_app/module/order/order_tracking_screen.dart';
 import 'package:shoes_app/module/product_details/product_details.dart';
 import 'package:shoes_app/module/review/write_review_screen.dart';
 import 'package:shoes_app/module/search/search_screen.dart';
@@ -195,30 +198,30 @@ class AppPages {
                 : null,
           );
         }),
-    // GetPage(
-    //     name: Routes.orderDetails,
-    //     page: () {
-    //       return Get.arguments ??
-    //           OrderDetailsScreen(
-    //               orderModel:
-    //                   OrderModel(id: int.parse(Get.parameters['id'] ?? '0')),
-    //               guestOrder: Get.parameters['guest'] != null
-    //                   ? Get.parameters['guest'] == 'true'
-    //                   : false);
-    //     }),
-    // GetPage(
-    //     name: Routes.orderSuccess,
-    //     page: () => OrderSuccessfulScreen(
-    //         orderID: Get.parameters['id'],
-    //         success: Get.parameters['success'] == 'true',
-    //         orderNow: Get.parameters['order_now'] == 'true')),
-    // GetPage(
-    //     name: Routes.orderTracking,
-    //     page: () => OrderTrackingScreen(
-    //           orderId: int.parse(Get.parameters['id'].toString()),
-    //           order: OrderModel.fromJson(jsonDecode(
-    //               utf8.decode(base64Url.decode(Get.parameters['order']!)))),
-    //         )),
+    GetPage(
+        name: Routes.orderDetails,
+        page: () {
+          return Get.arguments ??
+              OrderDetailsScreen(
+                  orderModel:
+                      OrderModel(id: int.parse(Get.parameters['id'] ?? '0')),
+                  guestOrder: Get.parameters['guest'] != null
+                      ? Get.parameters['guest'] == 'true'
+                      : false);
+        }),
+    GetPage(
+        name: Routes.orderSuccess,
+        page: () => OrderSuccessfulScreen(
+            orderID: Get.parameters['id'],
+            success: Get.parameters['success'] == 'true',
+            orderNow: Get.parameters['order_now'] == 'true')),
+    GetPage(
+        name: Routes.orderTracking,
+        page: () => OrderTrackingScreen(
+              orderId: int.parse(Get.parameters['id'].toString()),
+              order: OrderModel.fromJson(jsonDecode(
+                  utf8.decode(base64Url.decode(Get.parameters['order']!)))),
+            )),
     GetPage(name: Routes.search, page: () => const SearchScreen()),
     GetPage(
       name: Routes.orders,
