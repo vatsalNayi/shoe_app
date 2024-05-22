@@ -90,14 +90,17 @@ class GridProducts extends StatelessWidget {
           ),
           Row(
             children: [
-              Text(
-                // '\$130',
-                '${productList.salePrice}',
-                style: GoogleFonts.poppins(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              productList.salePrice != null && productList.salePrice!.isNotEmpty
+                  ? Text(
+                      // '\$130',
+                      // '₹${productList.price}',
+                      '₹${productList.salePrice}',
+                      style: GoogleFonts.poppins(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  : const SizedBox(),
               SizedBox(
                 width: 8.w,
               ),

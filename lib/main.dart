@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,10 +20,13 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   if (GetPlatform.isIOS || GetPlatform.isAndroid) {
     HttpOverrides.global = MyHttpOverrides();
   }
-  WidgetsFlutterBinding.ensureInitialized();
+
   Map<String, Map<String, String>> _languages = await di.init();
   String? _orderID;
   NotificationBody _body;
