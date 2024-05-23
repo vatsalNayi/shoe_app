@@ -19,8 +19,11 @@ SnackbarController showSnackbar(
   );
 }
 
-void showCustomSnackBar(String? message,
-    {bool isError = true, bool isCart = false}) {
+void showCustomSnackBar(
+  String? message, {
+  bool isError = true,
+  bool isCart = false,
+}) {
   if (message != null && message.isNotEmpty) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
       dismissDirection: DismissDirection.horizontal,
@@ -54,8 +57,11 @@ void showCustomSnackBar(String? message,
   }
 }
 
-void showCustomSnackBarHTML(Widget? message,
-    {bool isError = true, bool isCart = false}) {
+void showCustomSnackBarHTML(
+  Widget? message, {
+  bool isError = true,
+  bool isCart = false,
+}) {
   if (message != null) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
       dismissDirection: DismissDirection.horizontal,

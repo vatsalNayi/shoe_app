@@ -345,6 +345,7 @@ class CartPage extends StatelessWidget {
                                     btnText: 'Check Out',
                                     loading: false,
                                   ),
+                                  SizedBox(height: 20.h),
                                 ],
                               ),
                             )

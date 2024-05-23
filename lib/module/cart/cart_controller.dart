@@ -249,7 +249,10 @@ class CartController extends GetxController implements GetxService {
       _allCartList![_cartIndex].cartList = _cartList;
     }
     cartRepo.addToLocalCart(_allCartList!);
-    showCustomSnackBar('product_added_to_cart'.tr, isCart: true);
+    showCustomSnackBar(
+      'product_added_to_cart'.tr,
+      isCart: true,
+    );
     getCartList();
     update();
     if (Get.find<ProductController>().product != null) {

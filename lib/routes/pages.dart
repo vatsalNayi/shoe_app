@@ -16,9 +16,12 @@ import 'package:shoes_app/module/auth/signup/sign_up_page.dart';
 import 'package:shoes_app/module/cart/cart_page.dart';
 import 'package:shoes_app/module/categories/categories_product_page.dart';
 import 'package:shoes_app/module/checkout/order_successful_screen.dart';
+import 'package:shoes_app/module/checkout/payment_web_screen.dart';
 import 'package:shoes_app/module/dashboard/dashboard_page.dart';
 import 'package:shoes_app/module/home/home_page.dart';
 import 'package:shoes_app/module/instamojo/instamojo_api_demo.dart';
+import 'package:shoes_app/module/instamojo/instamojo_payment.dart';
+import 'package:shoes_app/module/instamojo/instamojo_sdk_demo.dart';
 import 'package:shoes_app/module/more/profile/widgets/update_profile_screen.dart';
 import 'package:shoes_app/module/more/settings/settings_screen.dart';
 import 'package:shoes_app/module/notification/notification_screen.dart';
@@ -125,18 +128,18 @@ class AppPages {
       transition: Transition.rightToLeftWithFade,
       transitionDuration: const Duration(milliseconds: 500),
     ),
-    // GetPage(
-    //   name: Routes.instamojoSdkDemo,
-    //   page: () => const InstamojoSdkDemo(),
-    //   transition: Transition.rightToLeftWithFade,
-    //   transitionDuration: const Duration(milliseconds: 500),
-    // ),
-    // GetPage(
-    //   name: Routes.instamojoPaymentPage,
-    //   page: () => const InstamojoPaymentScreen(),
-    //   transition: Transition.rightToLeftWithFade,
-    //   transitionDuration: const Duration(milliseconds: 500),
-    // ),
+    GetPage(
+      name: Routes.instamojoSdkDemo,
+      page: () => const InstamojoSdkDemo(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: Routes.instamojoPaymentPage,
+      page: () => const InstamojoPaymentScreen(),
+      transition: Transition.rightToLeftWithFade,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
     // GetPage(
     //   name: Routes.addAddressPage,
     //   page: () => const AddAddressPage(),
@@ -236,9 +239,9 @@ class AppPages {
     GetPage(name: Routes.updateProfile, page: () => UpdateProfileScreen()),
     GetPage(name: Routes.profile, page: () => ViewProfileScreen()),
     GetPage(name: Routes.settings, page: () => const SettingsScreen()),
-    // GetPage(
-    //     name: Routes.instaMojoWebPaymentScreen,
-    //     page: () => InstamojoWebPayment(url: Get.parameters['url'] ?? '')),
+    GetPage(
+        name: Routes.instaMojoWebPaymentScreen,
+        page: () => InstamojoWebPayment(url: Get.parameters['url'] ?? '')),
     GetPage(name: Routes.forgotPassword, page: () => ForgotPassPage()),
     GetPage(
         name: Routes.verification,

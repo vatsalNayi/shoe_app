@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
+import 'package:shoes_app/module/cart/cart_controller.dart';
 import 'package:shoes_app/module/dashboard/dashboard_controller.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -61,48 +63,43 @@ class DashboardPage extends StatelessWidget {
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon:
-                    // Obx( () =>
-                    //   Badge(
-                    // backgroundColor: AppColors.white,
-                    // alignment: Alignment.topRight,
-                    // smallSize: 10,
-                    // largeSize: 18,
-                    // isLabelVisible:
-                    //     Get.find<CartController>().cartList!.isNotEmpty,
-                    // label:
-                    //     GetBuilder<CartController>(builder: (cartController) { return
-                    // child: Center(
-                    //   child: Text(
-                    //     // cartController.cartList!.length.toString(),
-                    //     '1',
-                    //     style: GoogleFonts.poppins(
-                    //       color: AppColors.black,
-                    //       fontSize: 14,
-                    //     ),
-                    //   ),
-                    // ),
-                    Obx(
-                  () => Container(
-                    height: 63.h,
-                    width: 63.w,
-                    decoration: BoxDecoration(
-                      color: dashboardController.selectedIndex.value == 1
-                          ? AppColors.white
-                          : AppColors.lightGreen,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: SvgIcon(
-                        imagePath: ImagePath.cartSvg,
-                        fit: BoxFit.scaleDown,
-                        color: dashboardController.selectedIndex.value == 1
-                            ? AppColors.black
-                            : AppColors.white,
+                icon: Obx(() => Badge(
+                      alignment: Alignment.topRight,
+                      smallSize: 10,
+                      largeSize: 18,
+                      isLabelVisible:
+                          Get.find<CartController>().cartList!.isNotEmpty,
+                      label:
+                          GetBuilder<CartController>(builder: (cartController) {
+                        return Center(
+                          child: Text(
+                            cartController.cartList!.length.toString(),
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w500,
+                            ).copyWith(color: Colors.white, fontSize: 14),
+                          ),
+                        );
+                      }),
+                      child: Container(
+                        height: 63.h,
+                        width: 63.w,
+                        decoration: BoxDecoration(
+                          color: dashboardController.selectedIndex.value == 1
+                              ? AppColors.white
+                              : AppColors.lightGreen,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: SvgIcon(
+                            imagePath: ImagePath.cartSvg,
+                            fit: BoxFit.scaleDown,
+                            color: dashboardController.selectedIndex.value == 1
+                                ? AppColors.black
+                                : AppColors.white,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
+                    )),
                 label: '',
               ),
               BottomNavigationBarItem(
