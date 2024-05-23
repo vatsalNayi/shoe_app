@@ -116,7 +116,9 @@ class ProductTitleView extends StatelessWidget {
                         ? const SizedBox()
                         : productController.variationRegPrice != null
                             ? Text(
-                                '₹${PriceConverter.convertPrice(productController.variationRegPrice.toString())}',
+                                PriceConverter.convertPrice(productController
+                                    .variationRegPrice
+                                    .toString()),
                                 style: poppinsRegular.copyWith(
                                     color: Theme.of(context).hintColor,
                                     fontSize: Dimensions.fontSizeDefault,
@@ -128,7 +130,8 @@ class ProductTitleView extends StatelessWidget {
                         : const SizedBox(
                             width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                     Text(
-                        '₹${PriceConverter.convertPrice(productController.priceWithQuantity.toString())}',
+                        PriceConverter.convertPrice(
+                            productController.priceWithQuantity.toString()),
                         style: poppinsBold.copyWith(
                           color: const Color.fromARGB(255, 255, 154, 195),
                           fontSize: Dimensions.fontSizeLarge,
