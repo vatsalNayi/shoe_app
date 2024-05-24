@@ -10,6 +10,7 @@ import 'package:shoes_app/models/product_model.dart';
 import 'package:shoes_app/module/address/add_address_screen.dart';
 import 'package:shoes_app/module/address/saved_address_screen.dart';
 import 'package:shoes_app/module/auth/forgot_password/forgot_pass_page.dart';
+import 'package:shoes_app/module/auth/forgot_password/new_pass_page.dart';
 import 'package:shoes_app/module/auth/forgot_password/verification_page.dart';
 import 'package:shoes_app/module/auth/login/login_page.dart';
 import 'package:shoes_app/module/auth/signup/sign_up_page.dart';
@@ -256,13 +257,13 @@ class AppPages {
             password: data,
           );
         }),
-    // GetPage(
-    //     name: Routes.resetPassword,
-    //     page: () => NewPassPage(
-    //           resetToken: Get.parameters['token'],
-    //           number: Get.parameters['phone'],
-    //           fromPasswordChange: Get.parameters['page'] == 'password-change',
-    //         )),
+    GetPage(
+        name: Routes.resetPassword,
+        page: () => NewPassPage(
+              resetToken: Get.parameters['token'],
+              number: Get.parameters['phone'],
+              fromPasswordChange: Get.parameters['page'] == 'password-change',
+            )),
     GetPage(name: Routes.notification, page: () => NotificationScreen()),
     GetPage(
         name: Routes.notificationView,

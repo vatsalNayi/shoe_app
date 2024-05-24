@@ -7,7 +7,9 @@ import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/custom_appbar.dart';
 import 'package:shoes_app/global_widgets/custom_button.dart';
 import 'package:shoes_app/global_widgets/custom_textfield.dart';
+import 'package:shoes_app/global_widgets/show_snackbar.dart';
 import 'package:shoes_app/global_widgets/textfield_decoration.dart';
+import 'package:shoes_app/module/auth/controller/auth_controller.dart';
 import 'package:shoes_app/routes/pages.dart';
 
 class ForgotPassPage extends StatefulWidget {
@@ -77,9 +79,8 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
               bgColor: AppColors.lightGreen,
               btnText: 'Next'.tr,
               onPress: () {
-                Get.toNamed(Routes.verification);
                 // Get.toNamed(Routes.getVerificationRoute('_email', '', '', ''));
-                // _forgetPass
+                _forgetPass(_emailController.text);
               },
             )
 
@@ -90,18 +91,18 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
     );
   }
 
-  // void _forgetPass(String userName) async {
-  //   if (userName.isEmpty) {
-  //     showCustomSnackBar('enter_email_or_username'.tr);
-  //   } else {
-  //     Response response =
-  //         await Get.find<AuthController>().forgetPassword(userName);
-  //     if (response.body['status'] == '200') {
-  //       String? _email = response.body['email'];
-  //       Get.toNamed(Routes.getVerificationRoute(_email, '', '', ''));
-  //     } else {
-  //       showCustomSnackBar('${'no_user_found_with'.tr} $userName');
-  //     }
-  //   }
-  // }
+  void _forgetPass(String userName) async {
+    if (userName.isEmpty) {
+      showCustomSnackBar('enter_email_or_username'.tr);
+    } else {
+      Response response =
+          await Get.find<AuthController>().forgetPassword(userName);
+      if (response.body['status'] == '200') {
+        String? _email = response.body['email'];
+        Get.toNamed(Routes.getVerificationRoute(_email, '', '', ''));
+      } else {
+        showCustomSnackBar('${'no_user_found_with'.tr} $userName');
+      }
+    }
+  }
 }

@@ -17,6 +17,19 @@ class _InstamojoWebPaymentState extends State<InstamojoWebPayment> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: isBackAllowed,
+      onPopInvoked: (didPop) {
+        debugPrint('Did pop: $didPop');
+        if (didPop) {
+          if (Get.overlayContext != null) {
+            Future.delayed(
+              const Duration(milliseconds: 200),
+              () {
+                Navigator.of(Get.overlayContext!).pop();
+              },
+            );
+          }
+        }
+      },
       child: InAppWebView(
         initialUrlRequest: URLRequest(
           url: Uri.parse(

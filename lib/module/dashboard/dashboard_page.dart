@@ -63,39 +63,43 @@ class DashboardPage extends StatelessWidget {
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Obx(() => Badge(
-                      alignment: Alignment.topRight,
-                      smallSize: 10,
-                      largeSize: 18,
-                      isLabelVisible:
-                          Get.find<CartController>().cartList!.isNotEmpty,
-                      label:
-                          GetBuilder<CartController>(builder: (cartController) {
-                        return Center(
-                          child: Text(
-                            cartController.cartList!.length.toString(),
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w500,
-                            ).copyWith(color: Colors.white, fontSize: 14),
-                          ),
-                        );
-                      }),
-                      child: Container(
-                        height: 63.h,
-                        width: 63.w,
-                        decoration: BoxDecoration(
-                          color: dashboardController.selectedIndex.value == 1
-                              ? AppColors.white
-                              : AppColors.lightGreen,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: SvgIcon(
-                            imagePath: ImagePath.cartSvg,
-                            fit: BoxFit.scaleDown,
+                icon: Obx(() => Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Badge(
+                        alignment: Alignment.topRight,
+                        smallSize: 10,
+                        largeSize: 18,
+                        isLabelVisible:
+                            Get.find<CartController>().cartList!.isNotEmpty,
+                        label: GetBuilder<CartController>(
+                            builder: (cartController) {
+                          return Center(
+                            child: Text(
+                              cartController.cartList!.length.toString(),
+                              style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w500,
+                              ).copyWith(color: Colors.white, fontSize: 14),
+                            ),
+                          );
+                        }),
+                        child: Container(
+                          height: 63.h,
+                          width: 63.w,
+                          decoration: BoxDecoration(
                             color: dashboardController.selectedIndex.value == 1
-                                ? AppColors.black
-                                : AppColors.white,
+                                ? AppColors.white
+                                : AppColors.lightGreen,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: SvgIcon(
+                              imagePath: ImagePath.cartSvg,
+                              fit: BoxFit.scaleDown,
+                              color:
+                                  dashboardController.selectedIndex.value == 1
+                                      ? AppColors.black
+                                      : AppColors.white,
+                            ),
                           ),
                         ),
                       ),

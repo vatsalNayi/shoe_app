@@ -180,8 +180,8 @@ class LoginPage extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
                           onTap: () {
-                            // Get.toNamed(Routes.getForgotPassRoute());
-                            Get.toNamed(Routes.forgotPassword);
+                            Get.toNamed(Routes.getForgotPassRoute());
+                            // Get.toNamed(Routes.forgotPassword);
                           },
                           child: Text(
                             'Forgot password',

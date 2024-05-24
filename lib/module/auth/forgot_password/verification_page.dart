@@ -8,7 +8,9 @@ import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/custom_appbar.dart';
 import 'package:shoes_app/global_widgets/custom_button.dart';
+import 'package:shoes_app/global_widgets/show_snackbar.dart';
 import 'package:shoes_app/module/auth/controller/auth_controller.dart';
+import 'package:shoes_app/routes/pages.dart';
 
 class VerificationPage extends StatefulWidget {
   final String? number;
@@ -158,18 +160,18 @@ class _VerificationPageState extends State<VerificationPage> {
                 TextButton(
                   onPressed: _seconds < 1
                       ? () async {
-                          // Response response = await Get.find<AuthController>()
-                          //     .forgetPassword(widget.number!);
-                          // if (response.body['status'] == '200') {
-                          // //   _startTimer();
-                          // //   showCustomSnackBar('resend_code_successful'.tr,
-                          // //       isError: false);
-                          // //   print(response.body['otp']);
-                          // //   // Get.toNamed(RouteHelper.getVerificationRoute());
-                          // } else {
-                          //   showCustomSnackBar(
-                          //       '${'no_user_found_with'.tr} ${widget.number!}');
-                          // }
+                          Response response = await Get.find<AuthController>()
+                              .forgetPassword(widget.number!);
+                          if (response.body['status'] == '200') {
+                            _startTimer();
+                            showCustomSnackBar('resend_code_successful'.tr,
+                                isError: false);
+                            print(response.body['otp']);
+                            //   // Get.toNamed(RouteHelper.getVerificationRoute());
+                          } else {
+                            showCustomSnackBar(
+                                '${'no_user_found_with'.tr} ${widget.number!}');
+                          }
                         }
                       : null,
                   child: Text(
@@ -180,26 +182,24 @@ class _VerificationPageState extends State<VerificationPage> {
               ]),
               //: SizedBox(),
 
-              // authController.verificationCode.length == 4
-              //     ? !authController.isLoading
-              //         ?
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimensions.PADDING_SIZE_LARGE),
-                child: CustomButton(
-                  // radius: Dimensions.RADIUS_EXTRA_LARGE,
-                  loading: false,
-                  bgColor: AppColors.oysterPink,
-                  btnText: 'verify'.tr,
-                  onPress: () {
-                    //Get.toNamed(RouteHelper.getResetPasswordRoute(widget.number,  authController.verificationCode, 'reset-password'));
-                    // _verifyEmail(widget.number,
-                    //     authController.verificationCode);
-                  },
-                ),
-              )
-              //     : const Center(child: CircularProgressIndicator())
-              // : const SizedBox.shrink(),
+              authController.verificationCode.length == 4
+                  ? !authController.isLoading
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: Dimensions.PADDING_SIZE_LARGE),
+                          child: CustomButton(
+                            // radius: Dimensions.RADIUS_EXTRA_LARGE,
+                            loading: false,
+                            bgColor: AppColors.lightGreen,
+                            btnText: 'verify'.tr,
+                            onPress: () {
+                              _verifyEmail(widget.number,
+                                  authController.verificationCode);
+                            },
+                          ),
+                        )
+                      : const Center(child: CircularProgressIndicator())
+                  : const SizedBox.shrink(),
             ]);
           }),
         ),
@@ -207,30 +207,30 @@ class _VerificationPageState extends State<VerificationPage> {
     );
   }
 
-  // void _verifyEmail(String? userName, String otp) async {
-  //   if (otp.isEmpty) {
-  //     showCustomSnackBar('enter_email_or_username'.tr);
-  //   } else {
-  //     // Response response =
-  //     //     await Get.find<AuthController>().verifyEmail(userName, otp);
-  //     if (response.body['status'] == '200') {
-  //       if (response.body['code'] == 'Success') {
-  //         showCustomSnackBar('OTP_verified_successfully'.tr, isError: false);
-  //         // Get.toNamed(
-  //         //     Routes.getResetPasswordRoute(userName, otp, 'reset-password'));
-  //       }
-  //     } else {
-  //       if (response.body['messege'] ==
-  //           'The OTP Must Be Provided Within 60 Seconds.') {
-  //         showCustomSnackBar('the_OTP_must_be_provided'.tr);
-  //       } else if (response.body['messege'] == 'Provided OTP Does Not Match.') {
-  //         showCustomSnackBar('provided_OTP_does_not'.tr);
-  //       } else if (response.body['code'] == 'OTP Expired!') {
-  //         showCustomSnackBar('otp_expired'.tr);
-  //       } else {
-  //         showCustomSnackBar(response.body['messege']);
-  //       }
-  //     }
-  //   }
-  // }
+  void _verifyEmail(String? userName, String otp) async {
+    if (otp.isEmpty) {
+      showCustomSnackBar('enter_email_or_username'.tr);
+    } else {
+      Response response =
+          await Get.find<AuthController>().verifyEmail(userName, otp);
+      if (response.body['status'] == '200') {
+        if (response.body['code'] == 'Success') {
+          showCustomSnackBar('OTP_verified_successfully'.tr, isError: false);
+          Get.toNamed(
+              Routes.getResetPasswordRoute(userName, otp, 'reset-password'));
+        }
+      } else {
+        if (response.body['messege'] ==
+            'The OTP Must Be Provided Within 60 Seconds.') {
+          showCustomSnackBar('the_OTP_must_be_provided'.tr);
+        } else if (response.body['messege'] == 'Provided OTP Does Not Match.') {
+          showCustomSnackBar('provided_OTP_does_not'.tr);
+        } else if (response.body['code'] == 'OTP Expired!') {
+          showCustomSnackBar('otp_expired'.tr);
+        } else {
+          showCustomSnackBar(response.body['messege']);
+        }
+      }
+    }
+  }
 }
