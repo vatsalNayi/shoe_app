@@ -14,6 +14,7 @@ import 'package:shoes_app/core/utils/messages.dart';
 import 'package:shoes_app/helper/di_container.dart' as di;
 import 'package:shoes_app/helper/notification_helper.dart';
 import 'package:shoes_app/module/notification/model/notificaction_body.dart';
+import 'package:shoes_app/module/splash/splash_page.dart';
 import 'package:shoes_app/routes/pages.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

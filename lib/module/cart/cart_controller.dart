@@ -67,17 +67,17 @@ class CartController extends GetxController implements GetxService {
   get itemQty => _itemQty;
   set setItemQty(val) => _itemQty = val;
 
-  incrItemQty() {
-    setItemQty = itemQty + 1;
-    update();
-  }
+  // incrItemQty() {
+  //   setItemQty = itemQty + 1;
+  //   update();
+  // }
 
-  decrItemQty() {
-    if (itemQty != 1) {
-      setItemQty = itemQty - 1;
-      update();
-    }
-  }
+  // decrItemQty() {
+  //   if (itemQty != 1) {
+  //     setItemQty = itemQty - 1;
+  //     update();
+  //   }
+  // }
 
   bool _isSelectedItem = false;
   get isSelectedItem => _isSelectedItem;

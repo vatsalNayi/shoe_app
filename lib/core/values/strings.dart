@@ -246,4 +246,5 @@ class ImagePath {
   static const String offer = '${BaseImagePath.imagePath}offer.png';
   static const String feed = '${BaseImagePath.imagePath}feed.png';
   static const String activity = '${BaseImagePath.imagePath}activity.png';
+  static const String shoeLogo = '${BaseImagePath.imagePath}shoe_logo.png';
 }

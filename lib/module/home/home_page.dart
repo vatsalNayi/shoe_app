@@ -29,7 +29,6 @@ class HomePage extends StatelessWidget {
         leadingIcon: ImagePath.homeMenu,
         trailingIcon: ImagePath.notification,
         onTapTrailing: () {
-          debugPrint('Notification pressed');
           Get.toNamed(Routes.getNotificationRoute());
         },
       ),
