@@ -143,7 +143,7 @@ class LoginPage extends StatelessWidget {
                         child: Obx(
                           () => CustomTextfield(
                             obscureText: controller.isShowPassword.value,
-                            hintText: 'password',
+                            hintText: 'Password',
                             hintStyle: GoogleFonts.poppins(
                               color: AppColors.brightGrey,
                               fontSize: 16.sp,

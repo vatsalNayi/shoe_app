@@ -73,16 +73,18 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
               ),
             ),
             const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-            CustomButton(
-              // radius: Dimensions.RADIUS_EXTRA_LARGE,
-              loading: false,
-              bgColor: AppColors.lightGreen,
-              btnText: 'Next'.tr,
-              onPress: () {
-                // Get.toNamed(Routes.getVerificationRoute('_email', '', '', ''));
-                _forgetPass(_emailController.text);
-              },
-            )
+            GetBuilder<AuthController>(builder: (authController) {
+              return CustomButton(
+                // radius: Dimensions.RADIUS_EXTRA_LARGE,
+                loading: authController.isLoading,
+                bgColor: AppColors.lightGreen,
+                btnText: 'Next'.tr,
+                onPress: () {
+                  // Get.toNamed(Routes.getVerificationRoute('_email', '', '', ''));
+                  _forgetPass(_emailController.text);
+                },
+              );
+            })
 
             // }),
           ]),

@@ -183,22 +183,26 @@ class _VerificationPageState extends State<VerificationPage> {
               //: SizedBox(),
 
               authController.verificationCode.length == 4
-                  ? !authController.isLoading
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: Dimensions.PADDING_SIZE_LARGE),
-                          child: CustomButton(
+                  // ? !authController.isLoading
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: Dimensions.PADDING_SIZE_LARGE),
+                      child: GetBuilder<AuthController>(
+                        builder: (_) {
+                          return CustomButton(
                             // radius: Dimensions.RADIUS_EXTRA_LARGE,
-                            loading: false,
+                            loading: authController.isLoading,
                             bgColor: AppColors.lightGreen,
                             btnText: 'verify'.tr,
                             onPress: () {
                               _verifyEmail(widget.number,
                                   authController.verificationCode);
                             },
-                          ),
-                        )
-                      : const Center(child: CircularProgressIndicator())
+                          );
+                        },
+                      ),
+                    )
+                  // : const Center(child: CircularProgressIndicator())
                   : const SizedBox.shrink(),
             ]);
           }),

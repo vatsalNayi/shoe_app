@@ -89,16 +89,17 @@ class _NewPassPageState extends State<NewPassPage> {
             ),
             const SizedBox(height: 30),
             GetBuilder<AuthController>(builder: (authBuilder) {
-              return (!authBuilder.isLoading)
-                  ? CustomButton(
-                      loading: false,
-                      bgColor: AppColors.lightGreen,
-                      btnText: 'done'.tr,
-                      // radius: Dimensions.RADIUS_EXTRA_LARGE,
-                      onPress: () => _resetPassword(widget.number,
-                          widget.resetToken, _newPasswordController.text),
-                    )
-                  : const Center(child: CircularProgressIndicator());
+              return
+                  // (!authBuilder.isLoading) ?
+                  CustomButton(
+                loading: authBuilder.isLoading,
+                bgColor: AppColors.lightGreen,
+                btnText: 'done'.tr,
+                // radius: Dimensions.RADIUS_EXTRA_LARGE,
+                onPress: () => _resetPassword(widget.number, widget.resetToken,
+                    _newPasswordController.text),
+              );
+              // : const Center(child: CircularProgressIndicator());
             }),
           ]),
         ),

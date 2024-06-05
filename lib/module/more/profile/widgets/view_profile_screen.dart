@@ -143,8 +143,8 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                                             width: 20),
                                       ),
                                       onTap: () {
-                                        // Get.toNamed(
-                                        //     Routes.getEditProfileRoute());
+                                        Get.toNamed(
+                                            Routes.getEditProfileRoute());
                                       },
                                     )),
                               ),
