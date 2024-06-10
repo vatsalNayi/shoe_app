@@ -162,7 +162,7 @@ class WishedItems extends StatelessWidget {
                   ),
                 )
               : const Center(
-                  child: CircularProgressIndicator(),
+                  child: CupertinoActivityIndicator(),
                 )
           : const Center(
               child: CupertinoActivityIndicator(),

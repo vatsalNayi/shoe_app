@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/custom_button_with_icon.dart';
-import 'package:shoes_app/global_widgets/svg_icon.dart';
+import 'package:shoes_app/module/auth/controller/auth_controller.dart';
 import 'package:shoes_app/routes/pages.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -83,20 +83,14 @@ class WelcomePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // // temp start
-                        // ElevatedButton(
-                        //   onPressed: () {
-                        //     Get.toNamed(Routes.tempRounded);
-                        //   },
-                        //   child: Text('Temp'),
-                        // ),
-                        // temp end
                         SizedBox(
                           height: 50.h,
                         ),
                         CustomButtonWithIcon(
                           onTap: () {
-                            Get.toNamed(Routes.loginPage);
+                            // Get.toNamed(Routes.loginPage);
+                            Get.find<AuthController>().setIsWelcomed(true);
+                            Get.offAllNamed(Routes.dashboardPage);
                           },
                           title: 'Get Started',
                           icon: ImagePath.arrowNext,

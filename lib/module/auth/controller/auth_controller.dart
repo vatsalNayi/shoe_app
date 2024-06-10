@@ -199,6 +199,17 @@ class AuthController extends GetxController implements GetxService {
     return _biometric;
   }
 
+  bool? setIsWelcomed(bool setIsWelcomed) {
+    // _biometric = isActive;
+    authRepo.setIsWelcomed(setIsWelcomed);
+    update();
+    return _biometric;
+  }
+
+  getIsWelcomed() {
+    return authRepo.isWelcomed();
+  }
+
   // Future<void> authenticateWithBiometric(String token, bool autoLogin) async {
   //   final LocalAuthentication _bioAuth = LocalAuthentication();
   //   if((await _bioAuth.canCheckBiometrics || await _bioAuth.isDeviceSupported()) && authRepo.isBiometricEnabled()) {

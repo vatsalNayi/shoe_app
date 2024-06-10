@@ -70,7 +70,8 @@ class DashboardPage extends StatelessWidget {
                         smallSize: 10,
                         largeSize: 18,
                         isLabelVisible:
-                            Get.find<CartController>().cartList!.isNotEmpty,
+                            Get.find<CartController>().cartList != null &&
+                                Get.find<CartController>().cartList!.isNotEmpty,
                         label: GetBuilder<CartController>(
                             builder: (cartController) {
                           return Center(

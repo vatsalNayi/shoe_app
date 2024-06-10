@@ -185,6 +185,14 @@ class AuthRepo {
     return sharedPreferences.getBool(AppConstants.BIOMETRIC_AUTH);
   }
 
+  void setIsWelcomed(bool isWelcomed) async {
+    await sharedPreferences.setBool(AppConstants.isWelcomed, isWelcomed);
+  }
+
+  bool? isWelcomed() {
+    return sharedPreferences.getBool(AppConstants.isWelcomed);
+  }
+
   Future<Response> forgetPassword(String userName) async {
     // final token = sharedPreferences.getString(AppConstants.TOKEN);
 

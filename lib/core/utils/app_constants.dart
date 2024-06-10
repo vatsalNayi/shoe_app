@@ -211,6 +211,7 @@ class AppConstants {
   static const String INTRO = 'intro';
   static const String NOTIFICATION_COUNT = 'notification_count';
   static const String BIOMETRIC_TOKEN = 'biometric_token';
+  static const String isWelcomed = 'isWelcomed';
   static const String BIOMETRIC_AUTH = 'biometric_auth';
   static const String COUNTRY_CODE = 'country_code';
   static const String LANGUAGE_CODE = 'language_code';

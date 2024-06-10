@@ -9,11 +9,11 @@ import 'package:shoes_app/global_widgets/custom_textfield.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
 import 'package:shoes_app/global_widgets/textfield_decoration.dart';
 import 'package:shoes_app/helper/product_type.dart';
+import 'package:shoes_app/module/auth/controller/auth_controller.dart';
 import 'package:shoes_app/module/home/home_controller.dart';
 import 'package:shoes_app/module/home/products/all_product_screen.dart';
 import 'package:shoes_app/module/home/products/controller/product_controller.dart';
 import 'package:shoes_app/module/home/widgets/grid_product.dart';
-import 'package:shoes_app/module/home/widgets/horizontal_product_list.dart';
 import 'package:shoes_app/module/home/widgets/popular_product_view.dart';
 import '../../routes/pages.dart';
 
@@ -27,6 +27,11 @@ class HomePage extends StatelessWidget {
       appBar: CustomAppBar(
         title: 'Hi there!',
         leadingIcon: ImagePath.homeMenu,
+        // temp start
+        onTapLeading: () {
+          Get.find<AuthController>().setIsWelcomed(false);
+        },
+        // temp end
         trailingIcon: ImagePath.notification,
         onTapTrailing: () {
           Get.toNamed(Routes.getNotificationRoute());

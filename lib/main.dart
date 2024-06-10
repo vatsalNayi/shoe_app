@@ -15,6 +15,7 @@ import 'package:shoes_app/helper/di_container.dart' as di;
 import 'package:shoes_app/helper/notification_helper.dart';
 import 'package:shoes_app/module/notification/model/notificaction_body.dart';
 import 'package:shoes_app/module/splash/splash_page.dart';
+import 'package:shoes_app/module/welcome/welcome_page.dart';
 import 'package:shoes_app/routes/pages.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -82,6 +83,7 @@ class MyApp extends StatelessWidget {
                     AppConstants.languages[0]!.countryCode),
                 initialRoute: Routes.initial,
                 getPages: AppPages.pages,
+                // home: const WelcomePage(),
               );
             });
       });
