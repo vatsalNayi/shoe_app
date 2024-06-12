@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shoes_app/module/address/location_controller.dart';
 import '../../../data/services/api_checker.dart';
 import '../../../global_widgets/show_snackbar.dart';
 import '../../../models/address_model.dart';
@@ -146,7 +147,7 @@ class ProfileController extends GetxController implements GetxService {
       _profileModel = updateUserModel;
       _responseModel = ResponseModel(true, response.bodyString);
       getUserInfo();
-      // Get.find<LocationController>().removeProfileSavedAddress(); // Todo: uncomment
+      Get.find<LocationController>().removeProfileSavedAddress();
     } else {
       _responseModel = ResponseModel(false, response.statusText);
       debugPrint(response.statusText);

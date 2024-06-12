@@ -58,7 +58,7 @@ class _SplashPageState extends State<SplashPage> {
     });
     Get.find<ConfigController>().initSharedData();
     Get.find<CartController>().getCartList();
-    // Get.find<ConfigController>().getTaxSettings();
+    Get.find<ConfigController>().getTaxSettings();
     Get.find<ConfigController>().getTaxClasses();
     Get.find<CartController>().initList();
     Get.find<LocationController>().initList();

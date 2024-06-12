@@ -6,7 +6,9 @@ import 'package:shoes_app/routes/pages.dart';
 
 class SplashController extends GetxController {
   void redirectToDestination() async {
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () async {
+      await Get.find<ConfigController>().getGeneralSettings();
+      await Get.find<ConfigController>().getTaxSettings();
       Get.find<ConfigController>().getTaxClasses();
 
       if (Get.find<AuthController>().getIsWelcomed() != null &&

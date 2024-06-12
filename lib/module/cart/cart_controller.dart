@@ -178,29 +178,36 @@ class CartController extends GetxController implements GetxService {
           break;
         }
       }
-      for (int i = 0; i < _guestCartList!.length; i++) {
-        if (!_tempCartList!.contains(_guestCartList![i])) {
-          _tempCartList.add(_guestCartList![i]);
+      if (_guestCartList != null) {
+        for (int i = 0; i < _guestCartList!.length; i++) {
+          if (!_tempCartList!.contains(_guestCartList![i])) {
+            _tempCartList.add(_guestCartList![i]);
+          }
         }
       }
     }
 
     _cartList = [];
-    for (CartModel? cart in _tempCartList!) {
-      CartModel _cart = cart!;
-      try {
-        if (_cart.product!.taxClass!.isNotEmpty) {
-          _cart.tax = Get.find<ConfigController>()
-              .taxClassList!
-              .firstWhere((tax) => tax.taxClass == _cart.product!.taxClass);
-        }
-      } catch (e) {}
-      print(_cart.variationText);
-      _cartList!.add(_cart);
+    if (_tempCartList != null) {
+      _cartList = [];
+      for (CartModel? cart in _tempCartList!) {
+        CartModel _cart = cart!;
+        try {
+          if (_cart.product!.taxClass!.isNotEmpty) {
+            _cart.tax = Get.find<ConfigController>()
+                .taxClassList!
+                .firstWhere((tax) => tax.taxClass == _cart.product!.taxClass);
+          }
+        } catch (e) {}
+        print(_cart.variationText);
+        _cartList!.add(_cart);
+      }
     }
 
-    if (userId != 0 && _guestCartList!.length != 0) {
-      addToCartFromGuest();
+    if (_guestCartList != null) {
+      if (userId != 0 && _guestCartList!.length != 0) {
+        addToCartFromGuest();
+      }
     }
     if (notify) {
       update();

@@ -62,8 +62,7 @@ Future<Map<String, Map<String, String>>> init() async {
       () => ProfileRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   Get.lazyPut(
       () => OrderRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
-  Get.lazyPut(
-      () => OrderRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
+
   Get.lazyPut(
       () => WishRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   // Get.lazyPut(() => RoughRepo(apiClient: Get.find()));
