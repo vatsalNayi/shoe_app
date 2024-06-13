@@ -63,27 +63,26 @@ class DashboardPage extends StatelessWidget {
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Obx(() => Padding(
-                      padding: const EdgeInsets.only(top: 5.0),
-                      child: Badge(
-                        alignment: Alignment.topRight,
-                        smallSize: 10,
-                        largeSize: 18,
-                        isLabelVisible:
-                            Get.find<CartController>().cartList != null &&
-                                Get.find<CartController>().cartList!.isNotEmpty,
-                        label: GetBuilder<CartController>(
-                            builder: (cartController) {
-                          return Center(
-                            child: Text(
-                              cartController.cartList!.length.toString(),
-                              style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w500,
-                              ).copyWith(color: Colors.white, fontSize: 14),
-                            ),
-                          );
-                        }),
-                        child: Container(
+                icon: Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: GetBuilder<CartController>(builder: (cartController) {
+                    return Badge(
+                      alignment: Alignment.topRight,
+                      smallSize: 10,
+                      largeSize: 18,
+                      isLabelVisible:
+                          Get.find<CartController>().cartList != null &&
+                              Get.find<CartController>().cartList!.isNotEmpty,
+                      label: Center(
+                        child: Text(
+                          cartController.cartList!.length.toString(),
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                          ).copyWith(color: Colors.white, fontSize: 14),
+                        ),
+                      ),
+                      child: Obx(
+                        () => Container(
                           height: 63.h,
                           width: 63.w,
                           decoration: BoxDecoration(
@@ -104,7 +103,9 @@ class DashboardPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )),
+                    );
+                  }),
+                ),
                 label: '',
               ),
               BottomNavigationBarItem(
