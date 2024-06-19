@@ -121,6 +121,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             title: 'Details',
             leadingIcon: ImagePath.backLeftSvg,
             onTapLeading: () => Get.back(),
+            isCartIcon: true,
           ),
           body: (productController.noProductFound! == true)
               ? NoDataScreen(text: 'no_product_found'.tr)
@@ -132,7 +133,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               PageViewWidget(
-                                  product: productController.product),
+                                product: productController.product,
+                              ),
                               SizedBox(
                                 height: 25.h,
                               ),
@@ -656,15 +658,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                     (BuildContext context,
                                                         int index) {
                                                   return ProductCard(
-                                                      productModel:
-                                                          productController
-                                                                  .relatedProductList![
-                                                              index],
-                                                      allProduct: true,
-                                                      index: index,
-                                                      productList:
-                                                          productController
-                                                              .relatedProductList);
+                                                    productModel: productController
+                                                            .relatedProductList![
+                                                        index],
+                                                    allProduct: true,
+                                                    index: index,
+                                                    productList:
+                                                        productController
+                                                            .relatedProductList,
+                                                  );
                                                 },
                                               )
                                             : const ProductShimmer()
