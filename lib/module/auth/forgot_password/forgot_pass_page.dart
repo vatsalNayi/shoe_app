@@ -33,8 +33,7 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
         },
       ),
       body: SafeArea(
-          child: Center(
-              child: Container(
+          child: Container(
         width: context.width > 700 ? 700 : context.width,
         padding: context.width > 700
             ? const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT)
@@ -53,43 +52,43 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
               )
             : null,
         child: SingleChildScrollView(
-          child: Column(children: [
-            Image.asset(ImagePath.forgot, height: 220),
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: Text('Please enter Email or Username'.tr,
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w400,
-                  ),
-                  textAlign: TextAlign.center),
-            ),
-            customDecorationForTextfield(
-              child: CustomTextfield(
-                hintText: 'Email / Username',
-                controller: _emailController,
-                inputType: TextInputType.text,
-                border: InputBorder.none,
-                // divider: false,
+          child: Column(
+            children: [
+              Image.asset(ImagePath.forgot, height: 220),
+              Padding(
+                padding: const EdgeInsets.all(30),
+                child: Text('Please enter Email or Username'.tr,
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w400,
+                    ),
+                    textAlign: TextAlign.center),
               ),
-            ),
-            const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-            GetBuilder<AuthController>(builder: (authController) {
-              return CustomButton(
-                // radius: Dimensions.RADIUS_EXTRA_LARGE,
-                loading: authController.isLoading,
-                bgColor: AppColors.lightGreen,
-                btnText: 'Next'.tr,
-                onPress: () {
-                  // Get.toNamed(Routes.getVerificationRoute('_email', '', '', ''));
-                  _forgetPass(_emailController.text);
-                },
-              );
-            })
+              customDecorationForTextfield(
+                child: CustomTextfield(
+                  hintText: 'Email / Username',
+                  controller: _emailController,
+                  inputType: TextInputType.text,
+                  border: InputBorder.none,
+                  // divider: false,
+                ),
+              ),
+              const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+              GetBuilder<AuthController>(builder: (authController) {
+                return CustomButton(
+                  loading: authController.isLoading,
+                  bgColor: AppColors.lightGreen,
+                  btnText: 'Next'.tr,
+                  onPress: () {
+                    _forgetPass(_emailController.text);
+                  },
+                );
+              })
 
-            // }),
-          ]),
+              // }),
+            ],
+          ),
         ),
-      ))),
+      )),
     );
   }
 

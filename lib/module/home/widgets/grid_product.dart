@@ -7,12 +7,15 @@ import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/svg_icon.dart';
 import 'package:shoes_app/models/product_model.dart';
 import 'package:shoes_app/module/home/products/controller/product_controller.dart';
+import 'package:shoes_app/module/wishlist/controller/wish_controller.dart';
 
 class GridProducts extends StatelessWidget {
   ProductModel productList;
+  int index;
   GridProducts({
     super.key,
     required this.productList,
+    required this.index,
   });
 
   @override
@@ -29,10 +32,6 @@ class GridProducts extends StatelessWidget {
           Center(
             child: Stack(
               children: [
-                // Image.asset(
-                //   ImagePath.shoe1,
-                //   height: 65.h,
-                // ),
                 Image.network(
                   '${productList.images?.first.src}',
                   fit: BoxFit.cover,
@@ -41,9 +40,9 @@ class GridProducts extends StatelessWidget {
                 ),
                 Positioned.fill(
                   top: -3.0,
-                  right: -2.0,
+                  // left: -2.0,
                   child: Align(
-                    alignment: Alignment.topRight,
+                    alignment: Alignment.topLeft,
                     child: Container(
                       width: 54.w,
                       height: 21.h,
@@ -71,6 +70,29 @@ class GridProducts extends StatelessWidget {
                     ),
                   ),
                 ),
+                Positioned.fill(
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: GetBuilder<WishListController>(
+                      builder: (wishListController) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.find<WishListController>()
+                                .addProductToWishlist(productList);
+                          },
+                          child: SvgIcon(
+                            imagePath: wishListController.wishIdList
+                                    .contains(productList.id)
+                                ? ImagePath.saved
+                                : ImagePath.unsave,
+                            height: 15.h,
+                            width: 15.h,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -90,66 +112,64 @@ class GridProducts extends StatelessWidget {
           ),
           Row(
             children: [
-              productList.salePrice != null && productList.salePrice!.isNotEmpty
-                  ? Text(
-                      // '\$130',
-                      // '₹${productList.price}',
-                      '₹${productList.salePrice}',
-                      style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    )
-                  : const SizedBox(),
-              SizedBox(
-                width: 8.w,
-              ),
               Text(
-                // '\$135.00',
-                '₹${productList.regularPrice}',
+                '₹${productList.price}',
                 style: GoogleFonts.poppins(
-                  decoration: TextDecoration.lineThrough,
                   fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
+              // SizedBox(
+              //   width: 8.w,
+              // ),
+              // Text(
+              //   // '\$135.00',
+              //   '₹${productList.regularPrice}',
+              //   style: GoogleFonts.poppins(
+              //     decoration: TextDecoration.lineThrough,
+              //     fontSize: 14.sp,
+              //     fontWeight: FontWeight.w400,
+              //   ),
+              // ),
             ],
           ),
           SizedBox(
             height: 7.h,
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(9.r),
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  AppColors.bgGrey,
-                  AppColors.lightGreen.withOpacity(0.7),
-                ],
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SvgIcon(
-                  imagePath: ImagePath.freeDelivery,
-                ),
-                SizedBox(
-                  width: 2.w,
-                ),
-                Text(
-                  'Free Delivery',
-                  style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          ),
+
+          /// Free delivery widget:
+          // Container(
+          //   padding: EdgeInsets.symmetric(horizontal: 4.w),
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(9.r),
+          //     gradient: LinearGradient(
+          //       begin: Alignment.centerLeft,
+          //       end: Alignment.centerRight,
+          //       colors: [
+          //         AppColors.bgGrey,
+          //         AppColors.lightGreen.withOpacity(0.7),
+          //       ],
+          //     ),
+          //   ),
+          //   child: Row(
+          //     mainAxisSize: MainAxisSize.min,
+          //     children: [
+          //       const SvgIcon(
+          //         imagePath: ImagePath.freeDelivery,
+          //       ),
+          //       SizedBox(
+          //         width: 2.w,
+          //       ),
+          //       Text(
+          //         'Free Delivery',
+          //         style: GoogleFonts.poppins(
+          //           fontSize: 14.sp,
+          //           fontWeight: FontWeight.w400,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           SizedBox(
             height: 3.h,
           ),

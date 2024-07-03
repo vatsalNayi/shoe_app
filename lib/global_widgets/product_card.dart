@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shoes_app/module/wishlist/controller/wish_controller.dart';
 import '../core/utils/dimensions.dart';
 import '../core/utils/styles.dart';
 import '../core/values/colors.dart';
@@ -120,33 +121,35 @@ class ProductCard extends StatelessWidget {
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
-                                      // GetBuilder<WishListController>(
-                                      //     builder: (wishListController) {
-                                      //   return GestureDetector(
-                                      //     onTap: () {
-                                      //       Get.find<WishListController>()
-                                      //           .addProductToWishlist(
-                                      //               productList!
-                                      //                   .elementAt(index));
-                                      //     },
-                                      //     child: Center(
-                                      //         child: Icon(
-                                      //             wishListController.wishIdList
-                                      //                     .contains(productList!
-                                      //                         .elementAt(index)
-                                      //                         .id)
-                                      //                 ? Icons.favorite
-                                      //                 : Icons.favorite_border,
-                                      //             color: wishListController
-                                      //                     .wishIdList
-                                      //                     .contains(productList!
-                                      //                         .elementAt(index)
-                                      //                         .id)
-                                      //                 ? AppColors.red
-                                      //                 : Theme.of(context)
-                                      //                     .hintColor)),
-                                      //   );
-                                      // }),
+                                      GetBuilder<WishListController>(
+                                          builder: (wishListController) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Get.find<WishListController>()
+                                                .addProductToWishlist(
+                                                    productList!
+                                                        .elementAt(index));
+                                          },
+                                          child: Center(
+                                            child: Icon(
+                                              size: 18.w,
+                                              wishListController.wishIdList
+                                                      .contains(productList!
+                                                          .elementAt(index)
+                                                          .id)
+                                                  ? Icons.favorite
+                                                  : Icons.favorite_border,
+                                              color: wishListController
+                                                      .wishIdList
+                                                      .contains(productList!
+                                                          .elementAt(index)
+                                                          .id)
+                                                  ? AppColors.red
+                                                  : Theme.of(context).hintColor,
+                                            ),
+                                          ),
+                                        );
+                                      }),
                                     ],
                                   ),
                                   Row(

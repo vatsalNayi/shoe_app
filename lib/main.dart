@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,11 +10,10 @@ import 'package:shoes_app/controller/localization_controller.dart';
 import 'package:shoes_app/controller/theme_controller.dart';
 import 'package:shoes_app/core/utils/app_constants.dart';
 import 'package:shoes_app/core/utils/messages.dart';
+import 'package:shoes_app/core/values/colors.dart';
 import 'package:shoes_app/helper/di_container.dart' as di;
 import 'package:shoes_app/helper/notification_helper.dart';
 import 'package:shoes_app/module/notification/model/notificaction_body.dart';
-import 'package:shoes_app/module/splash/splash_page.dart';
-import 'package:shoes_app/module/welcome/welcome_page.dart';
 import 'package:shoes_app/routes/pages.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -73,8 +71,10 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 title: 'Shoes App',
                 theme: ThemeData(
-                  colorScheme:
-                      ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                  colorScheme: ColorScheme.fromSeed(
+                    // seedColor: Colors.deepPurple,
+                    seedColor: AppColors.lightGreen,
+                  ),
                   useMaterial3: true,
                 ),
                 locale: localizeController.locale,

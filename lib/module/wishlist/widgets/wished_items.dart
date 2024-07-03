@@ -5,9 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoes_app/core/values/colors.dart';
+import 'package:shoes_app/core/values/strings.dart';
 import 'package:shoes_app/global_widgets/custom_image.dart';
+import 'package:shoes_app/global_widgets/svg_icon.dart';
 import 'package:shoes_app/models/product_model.dart';
 import 'package:shoes_app/module/wishlist/controller/wish_controller.dart';
+import 'package:shoes_app/module/wishlist/widgets/wish_product_price_widget.dart';
 import 'package:shoes_app/routes/pages.dart';
 
 class WishedItems extends StatelessWidget {
@@ -87,16 +90,19 @@ class WishedItems extends StatelessWidget {
                                     SizedBox(
                                       height: 2.h,
                                     ),
+                                    // Price widget
                                     // WishProductPriceWidget(
-                                    //   // product: productData,
+                                    //   product: productData,
                                     // ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          // '\$149.00',
-                                          '₹${productData.salePrice}',
+                                          productData.salePrice != null &&
+                                                  productData.salePrice != ''
+                                              ? '₹${productData.salePrice}'
+                                              : '',
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.center,
                                           style: GoogleFonts.poppins(
@@ -140,18 +146,23 @@ class WishedItems extends StatelessWidget {
                                     .removeProductWishlist(index);
                               },
                               child: Container(
-                                width: 20.w,
-                                height: 20.h,
+                                width: 25.w,
+                                height: 25.h,
                                 decoration: const BoxDecoration(
                                   color: Color.fromARGB(255, 248, 248, 248),
                                   shape: BoxShape.circle,
                                 ),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.close,
-                                    color: Colors.black,
-                                    size: 15,
+                                child: Center(
+                                  child: SvgIcon(
+                                    imagePath: ImagePath.saved,
+                                    height: 15.h,
+                                    width: 15.h,
                                   ),
+                                  // Icon(
+                                  //   Icons.close,
+                                  //   color: Colors.black,
+                                  //   size: 15,
+                                  // ),
                                 ),
                               ),
                             ),

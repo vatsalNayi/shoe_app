@@ -27,11 +27,12 @@ class HomePage extends StatelessWidget {
       appBar: CustomAppBar(
         title: 'Hi there!',
         leadingIcon: ImagePath.homeMenu,
-        // temp start
-        onTapLeading: () {
-          Get.find<AuthController>().setIsWelcomed(false);
-        },
-        // temp end
+
+        /// temp start
+        // onTapLeading: () {
+        //   Get.find<AuthController>().setIsWelcomed(false);
+        // },
+        /// temp end
         trailingIcon: ImagePath.notification,
         onTapTrailing: () {
           Get.toNamed(Routes.getNotificationRoute());
@@ -62,11 +63,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            // SizedBox(
-            //   height: 20.h,
-            // ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              padding: EdgeInsets.symmetric(horizontal: 0.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -144,46 +142,49 @@ class HomePage extends StatelessWidget {
                   ),
                   const PopularProductView(isPopular: true),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'For You',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'For You',
+                          style: GoogleFonts.poppins(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => const AllProductScreen(
-                                productType: ProductType.LATEST_PRODUCT,
-                                // productType: isPopular
-                                //     ? ProductType.POPULAR_PRODUCT
-                                //     : newArrival
-                                //         ? ProductType.LATEST_PRODUCT
-                                //         : ProductType.REVIEWED_PRODUCT,
-                              ));
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              'View more',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => const AllProductScreen(
+                                  productType: ProductType.LATEST_PRODUCT,
+                                  // productType: isPopular
+                                  //     ? ProductType.POPULAR_PRODUCT
+                                  //     : newArrival
+                                  //         ? ProductType.LATEST_PRODUCT
+                                  //         : ProductType.REVIEWED_PRODUCT,
+                                ));
+                          },
+                          child: Row(
+                            children: [
+                              Text(
+                                'View more',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 2.w,
-                            ),
-                            const SvgIcon(
-                              imagePath: ImagePath.doubleArrow,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                              SizedBox(
+                                width: 2.w,
+                              ),
+                              const SvgIcon(
+                                imagePath: ImagePath.doubleArrow,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 14.h,
@@ -197,9 +198,11 @@ class HomePage extends StatelessWidget {
                               ? const Center(
                                   child: CupertinoActivityIndicator())
                               : GridView.builder(
+                                  shrinkWrap: true,
                                   itemCount: productList!.length,
                                   physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 24.w),
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
@@ -219,7 +222,9 @@ class HomePage extends StatelessWidget {
                                         ));
                                       },
                                       child: GridProducts(
-                                          productList: productList[index]),
+                                        index: index,
+                                        productList: productList[index],
+                                      ),
                                     );
                                   },
                                 );

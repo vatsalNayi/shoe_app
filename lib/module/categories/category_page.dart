@@ -119,7 +119,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                                           BorderRadius.circular(
                                                               20),
                                                       color:
-                                                          AppColors.lightRose,
+                                                          AppColors.lightGreen,
                                                     ),
                                                   )
                                                 : const SizedBox(),
@@ -180,7 +180,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                               fontWeight: FontWeight.w400,
                                               letterSpacing: 0.44,
                                             ),
-                                            bgColor: AppColors.lightRose,
+                                            bgColor: AppColors.lightGreen,
                                           ),
                                         ),
                                       ],
@@ -245,11 +245,12 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                                   color: categoryController
                                                               .selectedParentCategory ==
                                                           subCateogryData.id!
-                                                      ? const Color(0xFFF5CADB)
+                                                      ? AppColors.lightGreen
                                                       : Colors.white,
                                                   padding: const EdgeInsets
                                                       .symmetric(
-                                                      horizontal: 10),
+                                                    horizontal: 10,
+                                                  ),
                                                   margin: const EdgeInsets.only(
                                                       bottom: 20),
                                                   child: Align(

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoes_app/core/utils/app_constants.dart';
@@ -190,6 +191,8 @@ class AuthRepo {
   }
 
   bool? isWelcomed() {
+    debugPrint(
+        'is welcomed: ${sharedPreferences.getBool(AppConstants.isWelcomed)}');
     return sharedPreferences.getBool(AppConstants.isWelcomed);
   }
 
