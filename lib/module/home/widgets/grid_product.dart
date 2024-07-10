@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -32,8 +33,14 @@ class GridProducts extends StatelessWidget {
           Center(
             child: Stack(
               children: [
-                Image.network(
-                  '${productList.images?.first.src}',
+                // Image.network(
+                //   '${productList.images?.first.src}',
+                //   fit: BoxFit.cover,
+                //   height: 100.h,
+                //   width: 150.w,
+                // ),
+                CachedNetworkImage(
+                  imageUrl: '${productList.images?.first.src}',
                   fit: BoxFit.cover,
                   height: 100.h,
                   width: 150.w,

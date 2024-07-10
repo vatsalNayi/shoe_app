@@ -212,6 +212,8 @@ class HomePage extends StatelessWidget {
                                         0.7, // Gridview's item's size
                                   ),
                                   itemBuilder: (context, index) {
+                                    debugPrint(
+                                        'image src $index: ${productList[index].images?.first.src}');
                                     return GestureDetector(
                                       onTap: () {
                                         Get.toNamed(
